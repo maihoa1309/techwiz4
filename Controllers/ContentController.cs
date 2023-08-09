@@ -7,7 +7,7 @@ namespace StreamTrace.Controllers
     public class ContentController<T> : Controller where T : Base
     {
         private readonly IBaseRepository<T> _repository;
-        public ContentController(Repository.IBaseRepository<Content> repository, I)
+        public ContentController(IBaseRepository<Content> repository)
         {
         }
         // GET: Content
@@ -89,41 +89,42 @@ namespace StreamTrace.Controllers
             return View(entity);
         }
     }
+}
 
 
     // GET: Content/Delete/5
-    public async Task<IActionResult> DeleteAsync(int id)
-    {
-        var content = await _repository.GetByIdAsync(id);
-        if (content == null)
-        {
-            return NotFound();
-        }
-        return View(content);
-    }
+    //public async Task<IActionResult> DeleteAsync(int id)
+    //{
+    //    var content = await _repository.GetByIdAsync(id);
+    //    if (content == null)
+    //    {
+    //        return NotFound();
+    //    }
+    //    return View(content);
+    //}
 
     //POST: Content / Delete / 5
-    [HttpPost, ActionName("Delete")]
-    [ValidateAntiForgeryToken]
-    public async Task<IActionResult> DeleteConfirmed(int id)
-    {
-        var content = await _repository.GetByIdAsync(id);
-        if (content == null)
-        {
-            return NotFound();
-        }
+//    [HttpPost, ActionName("Delete")]
+//    [ValidateAntiForgeryToken]
+//    public async Task<IActionResult> DeleteConfirmed(int id)
+//    {
+//        var content = await _repository.GetByIdAsync(id);
+//        if (content == null)
+//        {
+//            return NotFound();
+//        }
 
-        var result = await _repository.DeleteAsync(content);
-        if (result != null)
-        {
-            return RedirectToAction("Index");
-        }
-        else
-        {
-            return BadRequest("Error!");
-        }
-    }
-}
+//        var result = await _repository.DeleteAsync(content);
+//        if (result != null)
+//        {
+//            return RedirectToAction("Index");
+//        }
+//        else
+//        {
+//            return BadRequest("Error!");
+//        }
+//    }
+//}
 
 
 
