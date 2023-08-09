@@ -2,10 +2,10 @@
 
 namespace StreamTrace.Models
 {
-    public class Service
+    public class Service :Base
     {
-        [Key]
-        public int ServiceId { get; set; }
+   
+     
         public string? Url_register { get; set; }
         public string? Logo { get; set; }
         public string? Name { get; set; }

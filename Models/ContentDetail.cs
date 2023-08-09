@@ -1,10 +1,15 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace StreamTrace.Models
 {
     public class ContentDetail:Base
     {
-        [Key]
-        public int Id { get; set; }
+    
+        public int SpectificationId { get; set; }
+        [ForeignKey("SpectificationId")]
+        public Spectification? Spectification { get; set;}
+        public string? Value { get; set; }
+        public string? Status { get; set; }
     }
 }

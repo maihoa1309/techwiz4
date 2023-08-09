@@ -5,8 +5,7 @@ namespace StreamTrace.Models
 {
     public class Subsription:Base
     {
-        [Key]
-        public int Id { get; set; }
+  
         
         public int? ServiceId { get; set; }
         [ForeignKey("ServiceId")]
