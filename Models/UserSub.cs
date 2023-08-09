@@ -10,7 +10,7 @@ namespace StreamTrace.Models
         public string? UserId { get; set; }
         public int? SubscriptionId { get; set; }
         [ForeignKey("SubscriptionId")]
-        public Subsription? GetSubsription { get; set; }
+        public Subscription? GetSubsription { get; set; }
         public DateTime? FromDate { get; set; }
         public DateTime? DueDate { get; set; }
         public decimal? Fee { get; set; }

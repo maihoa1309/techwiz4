@@ -84,7 +84,6 @@ namespace StreamTrace.Repository
         {
             if (entity != null)
             {
-
                 _dbSet.Update(entity);
                 entity.UpdatedUser = currentUserId;
                 entity.UpdatedTime = DateTime.Now;
