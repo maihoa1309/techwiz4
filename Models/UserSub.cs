@@ -5,8 +5,7 @@ namespace StreamTrace.Models
 {
     public class UserSub:Base
     {
-        [Key]
-        public int Id { get; set; }
+       
 
         public string? UserId { get; set; }
         public int? SubscriptionId { get; set; }
