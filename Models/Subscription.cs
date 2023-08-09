@@ -3,9 +3,9 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace StreamTrace.Models
 {
-    public class Subsription:Base
+    public class Subscription:Base
     {
-  
+   
         
         public int? ServiceId { get; set; }
         [ForeignKey("ServiceId")]

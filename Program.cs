@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using StreamTrace.Data;
 using StreamTrace.Models;
+using StreamTrace.Repository;
 
 namespace StreamTrace
 {
@@ -19,6 +20,7 @@ namespace StreamTrace
 
             builder.Services.AddIdentity<CustomUser, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
+            builder.Services.AddScoped(typeof(IBaseRepository<>), typeof(BaseRepository<>));
             builder.Services.AddControllersWithViews();
             builder.Services.AddRazorPages();
 
