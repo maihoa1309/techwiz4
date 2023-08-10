@@ -4,7 +4,7 @@
     ViewData["Title"] = "TvshowsAll";
     Layout = "~/Views/Shared/_LayoutWEB.cshtml";
 
-    var allTvShows = await contentRepository.FilterAsync(null, r => r.Type == "tvshow");
+    var allTvShows = await contentRepository.FilterAsync(null, r => r.Type == "tvshow","Id",false,1,10);
 }
 
 
@@ -46,7 +46,7 @@
                     <div class="row">
                     @foreach(var content in allTvShows)
                     {
-                        await Component.InvokeAsync("ContentItem", new { item = content });
+                        @await Component.InvokeAsync("ContentItem", new { item = content });
                     }
 
                     </div>
