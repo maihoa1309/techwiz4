@@ -11,7 +11,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 using StreamTrace.Models;
 
-namespace StreamTrace.Views.Auth
+namespace StreamTrace.Areas.Identity.Pages.Account
 {
     public class LogoutModel : PageModel
     {
