@@ -141,11 +141,11 @@ namespace StreamTrace.Controllers
             return View(contents);
         }
 
-        public async Task<IActionResult> GetHighestViewCount()
-        {
-            var contents = await _contentRepository.GetContentHighestViewCount();
-            return View(contents);
-        }
+        //public async Task<IActionResult> GetHighestViewCount()
+        //{
+        //    var contents = await _contentRepository.GetContentHighestViewCount();
+        //    return View(contents);
+        //}
 
         public async Task<IActionResult> SortNameByASC()
         {
