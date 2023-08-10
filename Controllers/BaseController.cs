@@ -8,10 +8,18 @@ namespace StreamTrace.Controllers
     {
 
         private readonly IBaseRepository<T> _repository;
+        private IBaseRepository<Content> repository;
+
         public BaseController(IBaseRepository<T> repository)
         {
             _repository = repository;
         }
+
+        public BaseController(IBaseRepository<Content> repository)
+        {
+            this.repository = repository;
+        }
+
         [HttpPost]
         public async Task<IActionResult> Create(T entity)
         {

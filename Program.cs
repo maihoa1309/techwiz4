@@ -21,6 +21,12 @@ namespace StreamTrace
             builder.Services.AddIdentity<CustomUser, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             builder.Services.AddScoped(typeof(IBaseRepository<>), typeof(BaseRepository<>));
+            builder.Services.AddScoped<IContentRepository, ContentRepository>();
+            builder.Services.AddScoped<IContentDetailRepository, ContentDetailRepository>();
+            builder.Services.AddScoped<IServiceRepository, ServiceRepository>();
+            builder.Services.AddScoped<ISpectificationRepository, SpectificationRepository>();
+            builder.Services.AddScoped< ISubscriptionRepository,SubscriptionRepository>();
+            builder.Services.AddScoped<UserSubRepository, UserSubRepository>();
             builder.Services.AddControllersWithViews();
             builder.Services.AddRazorPages();
 
