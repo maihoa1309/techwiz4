@@ -2,14 +2,23 @@
 using Microsoft.EntityFrameworkCore;
 using StreamTrace.Data;
 using StreamTrace.Models;
-
+using System.Linq.Expressions;
 
 namespace StreamTrace.Repository
 {
     public interface IBaseRepository<T> where T : Base
     {
         Task<List<T>> GetAllAsync();
-        //List<T> Filter();
+        Task<List<T>> FilterAsync(
+            Expression<Func<T, object>> includeProperty = null, //Su dung de include .Include(r => r....)
+            Expression<Func<T, bool>> filter = null, //Su dung de tim kiem (.Where(r => r....))
+            
+            string columnName = "id", 
+            bool columnASC = false, 
+            int index = 1, 
+            int size = 10
+            
+            );
         Task<T> CreateAsync(T entity);
         Task<T> UpdateAsync(T entity);
         Task<T> DeleteAsync(T entity);
@@ -67,6 +76,47 @@ namespace StreamTrace.Repository
                 return entity;
             }
             return null;
+
+        }
+
+        public async Task<List<T>> FilterAsync(
+            Expression<Func<T, object>> includeProperty = null,
+            Expression<Func<T, bool>> filter = null, 
+            string columnName = "Id", 
+            bool columnASC = false, 
+            int index = 1, 
+            int size = 10)
+        {
+            var dataRows = _dbSet.AsQueryable();
+
+            if (includeProperty != null)
+            {
+                dataRows = dataRows.Include(includeProperty);
+            }
+
+            if (filter != null)
+            {
+                dataRows = dataRows.Where(filter);
+            }
+
+            //total = dataRows.Count();
+            dataRows = dataRows.Skip((index - 1)*size).Take(size);
+
+            var propertyInfo = typeof(T).GetProperty(columnName);
+            var parameter = Expression.Parameter(typeof(T), "p");
+            var property = Expression.Property(parameter, propertyInfo);
+            var lambda = Expression.Lambda<Func<T, object>>(Expression.Convert(property, typeof(object)), parameter);
+
+            if (!columnASC)
+            {
+                dataRows = dataRows.OrderByDescending(lambda);
+            }
+            else
+            {
+                dataRows = dataRows.OrderBy(lambda);
+            }
+            var result = await dataRows.ToListAsync();
+            return result;
 
         }
 
