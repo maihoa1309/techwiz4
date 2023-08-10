@@ -10,11 +10,12 @@ namespace StreamTrace.Repository
     {
         Task<List<Content>> GetContentByName(string name, int index, int size);
         Task<List<Content>> GetContentHighestViewCount();
-
+        //Task<List<Content>> GetContentByType
         Task<List<Content>> SortNameByASC();
         
         Task <List<Content>> SortNameByDESC();
         Task<bool> CheckStatus(string name);
+
 
     }
     public class ContentRepository : BaseRepository<Content>, IContentRepository
