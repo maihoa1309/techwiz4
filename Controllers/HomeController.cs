@@ -23,7 +23,18 @@ namespace StreamTrace.Controllers
         {
             return View();
         }
-        public IActionResult Tvshows()
+
+        public IActionResult IndexTvshow()
+        {
+            return View();
+        }
+
+        public IActionResult TvshowStyle()
+        {
+            return View();
+        }
+
+        public IActionResult TvShows()
         {
             return View();
         }
