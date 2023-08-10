@@ -68,6 +68,22 @@ namespace StreamTrace.Controllers
         {
             return View();
         }
+
+        public IActionResult Kawaii()
+        {
+            return View("kawaii-song");
+        }
+        public IActionResult Royalty()
+        {
+            return View("royalty-song");
+        }
+
+        public IActionResult Music()
+        {
+            return View("music");
+        }
+
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
