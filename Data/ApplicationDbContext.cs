@@ -6,9 +6,13 @@ namespace StreamTrace.Data
 {
     public class ApplicationDbContext : IdentityDbContext
     {
+
+
+
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {
+
         }
         public virtual DbSet<CustomUser> CustomUser{ get; set; }
         public virtual DbSet<Content> Content { get; set; }
