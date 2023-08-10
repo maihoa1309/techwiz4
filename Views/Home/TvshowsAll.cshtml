@@ -4,7 +4,7 @@
     ViewData["Title"] = "TvshowsAll";
     Layout = "~/Views/Shared/_LayoutWEB.cshtml";
 
-    var allTvShows = await contentRepository.FilterAsync(null, r => r.Type == "tvshow");
+    var allTvShows = await contentRepository.FilterAsync(null, r => r.Type == "tvshow","Id",false,1,10);
 }
 
 
