@@ -8,7 +8,7 @@ namespace StreamTrace.Models
         public int? ServiceId { get; set; }
         [ForeignKey("ServiceId")]
         public Service? GetService { get; set; }
-        public string? Subcription_type { get; set; }
+        public int? Subcription_type { get; set; }
         public decimal? Subcription_fee { get; set; }
     }
 }

@@ -6,7 +6,6 @@ namespace StreamTrace.Models
     public class UserSub:Base
     {
        
-
         public string? UserId { get; set; }
         public int? SubscriptionId { get; set; }
         [ForeignKey("SubscriptionId")]

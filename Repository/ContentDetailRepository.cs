@@ -10,12 +10,22 @@ namespace StreamTrace.Repository
     {
 
         Task<List<Content>> GetContentByKeyword(string keyword);
+  //      Task<int> CheckStatus (ContentDetail entity);
 
     }
    
     public class ContentDetailRepository : BaseRepository<ContentDetail>, IContentDetailRepository
     {
         public ContentDetailRepository(ApplicationDbContext dbContext, UserManager<CustomUser> userManager, IHttpContextAccessor httpContext) : base(dbContext, userManager, httpContext) { }
+
+ //       public async Task<int> CheckStatus(ContentDetail entity)
+ //       {
+ //           var query = from cd in _context.ContentDetail
+ //                       where cd.Equals(entity)
+ //                       select cd.Status;
+ //
+ //           return (int)await query.FirstAsync();
+ //       }
 
         public async Task<List<Content>> GetContentByKeyword(string keyword)
         {

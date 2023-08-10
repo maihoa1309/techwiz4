@@ -15,9 +15,13 @@ namespace StreamTrace.Repository
     {
         public ServiceRepository(ApplicationDbContext dbContext, UserManager<CustomUser> userManager, IHttpContextAccessor httpContext) : base(dbContext, userManager, httpContext) { }
 
-        public Task<List<Service>> GetServiceByName(string name, int index, int size)
+        public async Task<List<Service>> GetServiceByName(string name, int index, int size)
         {
-
+            var result = await FilterAsync(r => r.Url_register,
+                                          r => r.Name.ToLower().Contains(name.ToLower()),
+                                          index: index,
+                                          size: size);
+            return result;
             throw new NotImplementedException();
         }
     }
