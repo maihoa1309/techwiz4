@@ -10,7 +10,6 @@ namespace StreamTrace.Repository
     {
         Task<List<Content>> GetContentByName(string name, int index, int size);
         Task<List<Content>> GetContentHighestViewCount();
-        //Task<List<Content>> GetContentByType
         Task<List<Content>> SortNameByASC();
         
         Task <List<Content>> SortNameByDESC();
@@ -30,10 +29,9 @@ namespace StreamTrace.Repository
             if (currentUser != null)
             {
                 var userId  = currentUser.Id;
-                var checkContentStatus = from c in _context.Content.AsQueryable()
-                                         join cd in _context.ContentDetail.AsQueryable() on c.Id equals cd.ContentId
+                var checkContentStatus = from c in _context.Content
                                          where c.Name.ToLower().Contains(name.ToLower())
-                                         select cd.Status;
+                                         select c.Status;
                 if (checkContentStatus.FirstOrDefault() == 1)
                 {
                     var checkUserSub = from u in _context.Users.AsQueryable()
@@ -65,6 +63,7 @@ namespace StreamTrace.Repository
             return result;
         }
 
+       
         public async Task<List<Content>> GetContentHighestViewCount()
         {
             var result = (from c in _context.Content 
