@@ -21,6 +21,38 @@ namespace StreamTrace.Controllers
         {
             return View();
         }
+        public IActionResult Movies()
+        {
+            return View();
+        }
+        public IActionResult Category()
+        {
+            return View();
+        }
+        public IActionResult Tvshows()
+        {
+            return View();
+        }
+        public IActionResult TvshowsAll()
+        {
+            return View();
+        }
+        public IActionResult MovieDetail()
+        {
+            return View();
+        }
+        public IActionResult TvshowsDetail()
+        {
+            return View();
+        }
+        public IActionResult Pricing()
+        {
+            return View();
+        }
+        public IActionResult ContactUs()
+        {
+            return View();
+        }
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
