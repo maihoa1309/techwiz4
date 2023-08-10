@@ -23,6 +23,10 @@ namespace StreamTrace.Controllers
         {
             return View();
         }
+        public IActionResult Tvshows()
+        {
+            return View();
+        }
 
         public IActionResult Privacy()
         {
