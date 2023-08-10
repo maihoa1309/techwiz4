@@ -69,13 +69,13 @@ namespace StreamTrace.Controllers
             return View();
         }
 
-        public IActionResult Kawaii()
+        public IActionResult MusicDetail2()
         {
-            return View("kawaii-song");
+            return View("MusicDetail-2");
         }
-        public IActionResult Royalty()
+        public IActionResult MusicDetail1()
         {
-            return View("royalty-song");
+            return View("MusicDetail-1");
         }
 
         public IActionResult Music()
