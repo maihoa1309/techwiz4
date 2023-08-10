@@ -6,11 +6,11 @@ namespace StreamTrace.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+
+        public HomeController()
         {
-            _logger = logger;
+
         }
 
         public IActionResult Index()
@@ -57,6 +57,10 @@ namespace StreamTrace.Controllers
             return View();
         }
         public IActionResult Pricing()
+        {
+            return View();
+        }
+        public IActionResult AllMovies()
         {
             return View();
         }

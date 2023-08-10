@@ -15,7 +15,7 @@ namespace StreamTrace.Models
         public string? Manufacture { get; set; }
         public int? ServiceId { get; set; }
         [ForeignKey("ServiceId")]
-        public Service GetService { get; set; }
+        public Service? GetService { get; set; }
 
     }
 }
