@@ -22,6 +22,7 @@ namespace StreamTrace.Repository
         Task<T> CreateAsync(T entity);
         Task<T> UpdateAsync(T entity);
         Task<T> DeleteAsync(T entity);
+        Task<T> GetByIdAsync(int id);
 
     }
 
@@ -128,6 +129,16 @@ namespace StreamTrace.Repository
         {
             var result = await _dbSet.ToListAsync();
             return result;
+        }
+
+        public async Task<T> GetByIdAsync(int id)
+        {
+            if (id > 0)
+            {
+                var result= await _dbSet.FindAsync(id);
+                return result;
+            }
+            return null;
         }
 
         public async Task<T> UpdateAsync(T entity)
