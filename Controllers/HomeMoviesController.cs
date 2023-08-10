@@ -4,23 +4,28 @@ using System.Diagnostics;
 
 namespace StreamTrace.Controllers
 {
-    public class HomeController : Controller
+    public class MoviesController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
-        {
-            _logger = logger;
-        }
-
-        public IActionResult Index()
+        public IActionResult AllMovies()
         {
             return View();
         }
-        public IActionResult Privacy()
+        public IActionResult Category()
         {
             return View();
         }
+        public IActionResult Detail()
+        {
+            return View();
+        }
+
+
+
+
+
+
+
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
@@ -28,3 +33,4 @@ namespace StreamTrace.Controllers
         }
     }
 }
+  
