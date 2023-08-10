@@ -46,7 +46,7 @@
                     <div class="row">
                     @foreach(var content in allTvShows)
                     {
-                        await Component.InvokeAsync("ContentItem", new { item = content });
+                        @await Component.InvokeAsync("ContentItem", new { item = content });
                     }
 
                     </div>

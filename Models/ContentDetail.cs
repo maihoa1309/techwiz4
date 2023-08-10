@@ -12,9 +12,8 @@ namespace StreamTrace.Models
         [ForeignKey("SpectificationId")]
         public Spectification? Spectification { get; set;}
         public string? Value { get; set; }
-        public int? Status { get; set; }
 
-        public string? Trailer { get; set; }
-        public string? FullVideo { get; set; }
+
+
     }
 }
