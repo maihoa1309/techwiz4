@@ -9,7 +9,7 @@ namespace StreamTrace.Models
      
         public string? Name { get; set; }
         public string? Type { get; set; }
-        public int? VIewCount { get; set; }
+        public int? ViewCount { get; set; }
         public int? parentid { get; set; }
         public int? Register_type { get; set; }
         public string? Manufacture { get; set; }

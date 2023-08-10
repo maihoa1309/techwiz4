@@ -5,8 +5,6 @@ namespace StreamTrace.Models
 {
     public class ContentDetail:Base
     {
-    
-
         public int? ContentId { get; set; }
         [ForeignKey("ContentId")]
         public Content? Content { get; set; }
