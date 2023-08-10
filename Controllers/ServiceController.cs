@@ -116,6 +116,11 @@ namespace StreamTrace.Controllers
                 }
             }
         }
+        public async Task<IActionResult> SearchServiceByName(string name, int index, int size)
+        {
+            var services = await _serviceRepository.GetServiceByName(name, index, size);
+            return View(services);
+        }
 
         // Code các phương thức để truy cập, thao tác dữ liệu từ nguồn dữ liệu (database hoặc bất kỳ nguồn dữ liệu nào khác) ở đây
         // Ví dụ:

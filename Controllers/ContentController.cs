@@ -135,8 +135,33 @@ namespace StreamTrace.Controllers
                 }
             }
         }
+        public async Task<IActionResult> SearchContent(string name, int index, int size)
+        {
+            var contents = await _contentRepository.GetContentByName(name, index, size);
+            return View(contents);
+        }
+
+        public async Task<IActionResult> GetHighestViewCount()
+        {
+            var contents = await _contentRepository.GetContentHighestViewCount();
+            return View(contents);
+        }
+
+        public async Task<IActionResult> SortNameByASC()
+        {
+            var contents = await _contentRepository.SortNameByASC();
+            return View(contents);
+        }
+
+        public async Task<IActionResult> SortNameByDESC()
+        {
+            var contents = await _contentRepository.SortNameByDESC();
+            return View(contents);
+        }
     }
 }
+
+
 
 
 

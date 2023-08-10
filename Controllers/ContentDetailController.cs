@@ -132,5 +132,10 @@ namespace StreamTrace.Controllers
                 }
             }
         }
+        public async Task<IActionResult> SearchContentByKeyword(string keyword)
+        {
+            var contents = await _contentDetailRepository.GetContentByKeyword(keyword);
+            return View(contents);
+        }
     }
 }
