@@ -21,6 +21,6 @@ namespace StreamTrace.Data
         public virtual DbSet<Spectification> Spectification { get; set; }
         public virtual DbSet<Subscription> Subsription { get; set; }
         public virtual DbSet<UserSub> UserSub { get; set; }
-
+        
     }
 }
