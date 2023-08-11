@@ -43,11 +43,8 @@
                     <div class="row">
                     @foreach (var content in category)
                     {
-
                         @await Component.InvokeAsync("ContentItem", new { item = content })
                         ;
-
-
                     }
                     </div>
                 </div>
