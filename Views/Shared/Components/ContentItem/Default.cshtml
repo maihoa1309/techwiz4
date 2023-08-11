@@ -54,10 +54,7 @@
                     </div>
                     <div class="gen-movie-action">
 
-                        <a href="@Url.Action("MovieDetail", new {id = Model.Id})" class="gen-button">
-                            <i class="fa fa-play"></i>
-                        </a>
-
+                       
                         @if(Model.Type.Equals("movie"))
                         {
                             <a href="@Url.Action("MovieDetail",new {id = Model.Id})" class="gen-button">
@@ -79,7 +76,7 @@
 
                         <h3><a href="@Url.Action("MovieDetail", new {id = Model.Id})">@Model.Name</a></h3>
 
-                        <h3><a href="MovieDetail">@Model.Name</a></h3>
+                        
 
                     </div>
                     <div class="gen-movie-meta-holder">
