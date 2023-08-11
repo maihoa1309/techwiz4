@@ -69,6 +69,11 @@ namespace StreamTrace.Controllers
             return View();
         }
 
+        public IActionResult Users()
+        {
+            return View();
+        }
+
         public IActionResult MusicDetail2()
         {
             return View("MusicDetail-2");
@@ -82,8 +87,6 @@ namespace StreamTrace.Controllers
         {
             return View("music");
         }
-
-
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
