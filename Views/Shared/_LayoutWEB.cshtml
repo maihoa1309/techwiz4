@@ -41,20 +41,20 @@
                                     <ul id="gen-main-menu" class="navbar-nav ml-auto">
 
                                         <li class="menu-item active">
-                                            <a href="#" aria-current="page">Home</a>
+                                            <a href="home/Index" aria-current="page">Home</a>
                                             <i class="fa fa-chevron-down gen-submenu-icon"></i>
                                             <ul class="sub-menu">
                                                 <li class="menu-item active">
-                                                    <a href="index.html" aria-current="page">Main Home</a>
+                                                    <a href="Home/Index" aria-current="page">Main Home</a>
                                                 </li>
                                                 <li class="menu-item">
-                                                    <a href="movies-home.html" aria-current="page">Movies Home</a>
+                                                    <a href="home/movieshome" aria-current="page">Movies Home</a>
                                                 </li>
                                                 <li class="menu-item">
-                                                    <a href="tv-shows-home.html" aria-current="page">Tv Shows Home</a>
+                                                    <a href="home/tvshowshome" aria-current="page">Tv Shows Home</a>
                                                 </li>
                                                 <li class="menu-item">
-                                                    <a href="video-home.html" aria-current="page">Musics Home</a>
+                                                    <a href="home/Musichome" aria-current="page">Musics Home</a>
                                                 </li>
                                             </ul>
                                         </li>
@@ -63,10 +63,13 @@
                                             <i class="fa fa-chevron-down gen-submenu-icon"></i>
                                             <ul class="sub-menu">
                                                 <li class="menu-item active">
-                                                    <a href="index.html" aria-current="page">Movies List</a>
+                                                    <a href="home/movieshome" aria-current="page">Movies Home</a>
+                                                </li>
+                                                <li class="menu-item active">
+                                                    <a href="home/moviesAll" aria-current="page">Movies List</a>
                                                 </li>
                                                 <li class="menu-item">
-                                                    <a href="movies-home.html" aria-current="page">Movies Genre</a>
+                                                    <a href="home/Genre" aria-current="page">Movies Genre</a>
                                                 </li>
 
                                             </ul>
@@ -76,23 +79,24 @@
                                             <i class="fa fa-chevron-down gen-submenu-icon"></i>
                                             <ul class="sub-menu">
                                                 <li class="menu-item menu-item-has-children">
-                                                    <a href="index.html" aria-current="page">TV Shows List</a>
+                                                    <a href="home/TvshowsHome" aria-current="page">TV Shows Home</a>
+                                                </li>
+                                                <li class="menu-item menu-item-has-children">
+                                                    <a href="TvshowsAll" aria-current="page">TV Shows List</a>
                                                     <i class="fa fa-chevron-down gen-submenu-icon"></i>
                                                     <ul class="sub-menu">
                                                         <li class="menu-item">
-                                                            <a href="tvshow1.html">TV Show 1</a>
+                                                            <a href="home/TvshowStyle">TV Show 1</a>
                                                         </li>
                                                         <li class="menu-item">
-                                                            <a href="tvshow2.html">TV Show 2</a>
+                                                            <a href="home/TvshowStyle">TV Show 2</a>
                                                         </li>
                                                         <li class="menu-item">
-                                                            <a href="tvshow3.html">TV Show 3</a>
+                                                            <a href="home/TvshowStyle">TV Show 3</a>
                                                         </li>
                                                     </ul>
                                                 </li>
-                                                <li class="menu-item menu-item-has-children">
-                                                    <a href="index.html" aria-current="page">TV Shows Home</a>
-                                                    </li>
+                                                
                                             </ul>
                                         </li>
                                         <li class="menu-item">
@@ -100,15 +104,54 @@
                                             <i class="fa fa-chevron-down gen-submenu-icon"></i>
                                             <ul class="sub-menu">
                                                 <li class="menu-item menu-item-has-children">
-                                                    <a href="#">Singer</a>           
+                                                    <a href="home/MusicHome">Musics Home</a>
                                                 </li>
                                                 <li class="menu-item menu-item-has-children">
-                                                    <a href="#">Musics List</a>                                                
-                                                 </li>      
-                                                 </ul>
+                                                    <a href="home/SingerList">Singer List</a>           
+                                                </li>
+                                                <li class="menu-item menu-item-has-children">
+                                                    <a href="home/MusicsAll">Musics List</a>                                                
+                                                 </li>                                            
+                                            </ul>
+
+                                        
+
+                                        <li class="menu-item" style="padding-right: 15px">
+                                            <a href="#">Pages</a>
+                                            @*<i class="fa fa-chevron-down gen-submenu-icon"></i>*@
+                                            <ul class="sub-menu">
+                                                <li class="menu-item menu-item-has-children">
+
+                                                    <a href="home/Pricing">Pricing</a>   
+
+                                                </li>
+                                                
+                                                <li class="menu-item">
+                                                    <a href="home/ContactUs">Contact Us</a>
+                                                </li>
+                                            
+                                            </ul>
+                                        </li>
+
+                                    </ul>
                                 </div>
                             </div>
-                            <div class="gen-header-info-box">                                
+                            <div class="gen-header-info-box">
+                                <div class="gen-menu-search-block">
+                                    <a href="javascript:void(0)" id="gen-seacrh-btn"><i class="fa fa-search"></i></a>
+                                    <div class="gen-search-form">
+                                        <form role="search" method="get" class="search-form" action="home/Search">
+                                            <label>
+                                                <span class="screen-reader-text"></span>
+                                                <input type="search" class="search-field" placeholder="Search …"
+                                                       value="" name="">
+                                            </label>
+                                            <button type="submit" class="search-submit">
+                                                <span class="screen-reader-text"></span>
+                                            </button>
+                                        </form>
+                                    </div>
+                                </div>
                             </div>
                                 <div class="gen-account-holder">
                                     <a href="javascript:void(0)" id="gen-user-btn"><i class="fa fa-user"></i></a>
