@@ -1,12 +1,5 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
-
-}
-
-@using StreamTrace.Repository;
-@inject IContentRepository contentRepository;
-@{
-    var category = await contentRepository.FilterAsync(null, r => r.Type.Equals("movie"), "Id", false, 1, 10);
 }
 
 <section class="pt-0 pb-0">
@@ -144,12 +137,12 @@
         <div class="container">
             <div class="row">
                 <div class="col-xl-6 col-lg-6 col-md-6">
-                    <h4 class="gen-heading-title">All Time Hits</h4>
+                    <h4 class="gen-heading-title">Movies</h4>
                 </div>
                 <div class="col-xl-6 col-lg-6 col-md-6 d-none d-md-inline-block">
                     <div class="gen-movie-action">
                         <div class="gen-btn-container text-right">
-                            <a href="tv-shows-pagination.html" class="gen-button gen-button-flat">
+                            <a href="./MoviesAll" class="gen-button gen-button-flat">
                                 <span class="text">More Videos</span>
                             </a>
                         </div>
@@ -541,12 +534,12 @@
         <div class="container">
             <div class="row">
                 <div class="col-xl-6 col-lg-6 col-md-6">
-                    <h4 class="gen-heading-title">Top Regional Shows</h4>
+                    <h4 class="gen-heading-title">TV Shows</h4>
                 </div>
                 <div class="col-xl-6 col-lg-6 col-md-6 d-none d-md-inline-block">
                     <div class="gen-movie-action">
                         <div class="gen-btn-container text-right">
-                            <a href="tv-shows-pagination.html" class="gen-button gen-button-flat">
+                            <a href="./TvshowsAll" class="gen-button gen-button-flat">
                                 <span class="text">More Videos</span>
                             </a>
                         </div>
@@ -678,10 +671,98 @@
                                         </div>
                                     </div>
                                 </div>
-                                
+
+                                <div class="slider-item" style="background: url(/images/background/asset-1.jpg)">
+                                <div class="gen-slick-slider h-100">
+                                    <div class="gen-movie-contain h-100">
+                                        <div class="container h-100">
+                                            <div class="row align-items-center h-100">
+                                                <div class="col-lg-6">
+                                                    <div class="gen-movie-info">
+                                                        <h3>thieve the bank</h3>
+                                                        <p>
+                                                            Streamlab is a long established fact that a reader will be distracted by
+                                                            the readable content of a page when Streamlab at its layout Streamlab.
+                                                        </p>
+
+                                                    </div>
+                                                    <div class="gen-movie-action">
+                                                        <div class="gen-btn-container button-1">
+                                                            <a class="gen-button" href="#" tabindex="0">
+                                                                <i aria-hidden="true" class="ion ion-play"></i>
+                                                                <span class="text">Play Now</span>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                                <div class="slider-item" style="background: url(/images/background/asset-1.jpg)">
+                                <div class="gen-slick-slider h-100">
+                                    <div class="gen-movie-contain h-100">
+                                        <div class="container h-100">
+                                            <div class="row align-items-center h-100">
+                                                <div class="col-lg-6">
+                                                    <div class="gen-movie-info">
+                                                        <h3>thieve the bank</h3>
+                                                        <p>
+                                                            Streamlab is a long established fact that a reader will be distracted by
+                                                            the readable content of a page when Streamlab at its layout Streamlab.
+                                                        </p>
+
+                                                    </div>
+                                                    <div class="gen-movie-action">
+                                                        <div class="gen-btn-container button-1">
+                                                            <a class="gen-button" href="#" tabindex="0">
+                                                                <i aria-hidden="true" class="ion ion-play"></i>
+                                                                <span class="text">Play Now</span>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                                <div class="slider-item" style="background: url(/images/background/asset-1.jpg)">
+                                <div class="gen-slick-slider h-100">
+                                    <div class="gen-movie-contain h-100">
+                                        <div class="container h-100">
+                                            <div class="row align-items-center h-100">
+                                                <div class="col-lg-6">
+                                                    <div class="gen-movie-info">
+                                                        <h3>thieve the bank</h3>
+                                                        <p>
+                                                            Streamlab is a long established fact that a reader will be distracted by
+                                                            the readable content of a page when Streamlab at its layout Streamlab.
+                                                        </p>
+
+                                                    </div>
+                                                    <div class="gen-movie-action">
+                                                        <div class="gen-btn-container button-1">
+                                                            <a class="gen-button" href="#" tabindex="0">
+                                                                <i aria-hidden="true" class="ion ion-play"></i>
+                                                                <span class="text">Play Now</span>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                                 <!-- Slider Items -->
                             </div>
+
                             <div class="slider slider-nav">
+                                <!-- Slider Items -->
                                 <div class="slider-nav-contain">
                                     <div class="gen-nav-img">
                                         <img src="~/images/background/asset-4.jpg" alt="steamlab-image">
@@ -700,7 +781,67 @@
                                         </div>
                                     </div>
                                 </div>
+
+                                <div class="slider-nav-contain">
+                                    <div class="gen-nav-img">
+                                        <img src="~/images/background/asset-4.jpg" alt="steamlab-image">
+                                    </div>
+                                    <div class="movie-info">
+                                        <h3>thieve the bank</h3>
+                                        <div class="gen-movie-meta-holder">
+                                            <ul>
+                                                <li>30mins</li>
+                                                <li>
+                                                    <a href="action.html">
+                                                        Action
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="slider-nav-contain">
+                                    <div class="gen-nav-img">
+                                        <img src="~/images/background/asset-4.jpg" alt="steamlab-image">
+                                    </div>
+                                    <div class="movie-info">
+                                        <h3>thieve the bank</h3>
+                                        <div class="gen-movie-meta-holder">
+                                            <ul>
+                                                <li>30mins</li>
+                                                <li>
+                                                    <a href="action.html">
+                                                        Action
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="slider-nav-contain">
+                                    <div class="gen-nav-img">
+                                        <img src="~/images/background/asset-4.jpg" alt="steamlab-image">
+                                    </div>
+                                    <div class="movie-info">
+                                        <h3>thieve the bank</h3>
+                                        <div class="gen-movie-meta-holder">
+                                            <ul>
+                                                <li>30mins</li>
+                                                <li>
+                                                    <a href="action.html">
+                                                        Action
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            <!-- Slider Items -->
                             </div>
+
+
                         </div>
                     </div>
                 </div>
@@ -714,12 +855,12 @@
         <div class="container">
             <div class="row">
                 <div class="col-xl-6 col-lg-6 col-md-6">
-                    <h4 class="gen-heading-title">Watch For Free: Movie Mania</h4>
+                    <h4 class="gen-heading-title">Watch For Free</h4>
                 </div>
                 <div class="col-xl-6 col-lg-6 col-md-6 d-none d-md-inline-block">
                     <div class="gen-movie-action">
                         <div class="gen-btn-container text-right">
-                            <a href="tv-shows-pagination.html" class="gen-button gen-button-flat">
+                            <a href="#" class="gen-button gen-button-flat">
                                 <span class="text">More Videos</span>
                             </a>
                         </div>
@@ -745,7 +886,7 @@
                                                         <a class="dropdown-toggle" href="#"><i class="fa fa-plus"></i></a>
                                                         <div class="dropdown-menu">
                                                             <!-- đổ dữ liệu ra đây -->
-                                                            <a class="login-link" href="register.html">
+                                                            <a class="login-link" href="register">
                                                                 Sign
                                                                 in to add this movie to a playlist.
                                                             </a>
@@ -776,7 +917,7 @@
                                                 </div>
                                                 <div class="gen-movie-action">
                                                     <!-- đổ dữ liệu ra đây -->
-                                                    <a href="single-movie.html" class="gen-button">
+                                                    <a href="#" class="gen-button">
                                                         <i class="fa fa-play"></i>
                                                     </a>
                                                 </div>
@@ -784,7 +925,7 @@
                                             <div class="gen-info-contain">
                                                 <div class="gen-movie-info">
                                                     <!-- đổ dữ liệu ra đây -->
-                                                    <h3><a href="single-movie.html">Chapter & Verse</a></h3>
+                                                    <h3><a href="#">Chapter & Verse</a></h3>
                                                 </div>
                                                 <div class="gen-movie-meta-holder">
                                                     <ul>
@@ -792,7 +933,7 @@
                                                         <li>1hr 37 mins</li>
                                                         <li>
                                                             <!-- đổ dữ liệu ra đây -->
-                                                            <a href="action.html"><span>Action</span></a>
+                                                            <a href="#"><span>Action</span></a>
                                                         </li>
                                                     </ul>
                                                 </div>
@@ -821,6 +962,84 @@
                              data-loop="true" data-margin="30">
 
                             <div class="item" style="background: url(/images/background/asset-37.jpg)">
+                                <div class="gen-movie-contain h-100">
+                                    <div class="container  h-100">
+                                        <div class="row align-items-center h-100">
+                                            <div class="col-xl-6">
+                                                <div class="gen-movie-info">
+                                                    <!-- đổ dữ liệu ra đây -->
+                                                    <h3>Against Beast</h3>
+                                                </div>
+                                                <div class="gen-movie-meta-holder">
+                                                    <ul>
+                                                        <!-- đổ dữ liệu ra đây -->
+                                                        <li>1 Season</li>
+                                                        <li>1 Episode</li>
+                                                        <li>2017 to 2018</li>
+                                                        <li>
+                                                            <!-- đổ dữ liệu ra đây -->
+                                                            <a href="#"><span>Drama</span></a>
+                                                        </li>
+                                                    </ul>
+                                                    <p>
+                                                        Streamlab is a long established fact that a reader will be distracted by the
+                                                        readable content of a page when Streamlab at its layout Streamlab.
+                                                    </p>
+                                                </div>
+                                                <div class="gen-movie-action">
+                                                    <div class="gen-btn-container button-1">
+
+                                                        <!-- đổ dữ liệu ra đây -->
+                                                        <a href="single-episode.html" class="gen-button gen-button-dark">
+                                                            <span class="text">Play now</span>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        <div class="item" style="background: url(/images/background/asset-37.jpg)">
+                            <div class="gen-movie-contain h-100">
+                                <div class="container  h-100">
+                                    <div class="row align-items-center h-100">
+                                        <div class="col-xl-6">
+                                            <div class="gen-movie-info">
+                                                <!-- đổ dữ liệu ra đây -->
+                                                <h3>Against Beast</h3>
+                                            </div>
+                                            <div class="gen-movie-meta-holder">
+                                                <ul>
+                                                    <!-- đổ dữ liệu ra đây -->
+                                                    <li>1 Season</li>
+                                                    <li>1 Episode</li>
+                                                    <li>2017 to 2018</li>
+                                                    <li>
+                                                        <!-- đổ dữ liệu ra đây -->
+                                                        <a href="#"><span>Drama</span></a>
+                                                    </li>
+                                                </ul>
+                                                <p>
+                                                    Streamlab is a long established fact that a reader will be distracted by the
+                                                    readable content of a page when Streamlab at its layout Streamlab.
+                                                </p>
+                                            </div>
+                                            <div class="gen-movie-action">
+                                                <div class="gen-btn-container button-1">
+
+                                                    <!-- đổ dữ liệu ra đây -->
+                                                    <a href="single-episode.html" class="gen-button gen-button-dark">
+                                                        <span class="text">Play now</span>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item" style="background: url(/images/background/asset-37.jpg)">
                                 <div class="gen-movie-contain h-100">
                                     <div class="container  h-100">
                                         <div class="row align-items-center h-100">
