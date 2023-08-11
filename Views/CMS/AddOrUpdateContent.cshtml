@@ -1,0 +1,82 @@
+﻿45t
+@{
+    ViewData["Title"] = "AddOrUpdateContent";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Content</title>
+    <!-- Link tới Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        /* Tùy chỉnh giao diện CSS ở đây */
+        .form-container {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+            .form-container h2 {
+                margin-bottom: 20px;
+            }
+
+        .btn-custom {
+            background-color: #007bff;
+            border-color: #007bff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8 form-container">
+                <h2 class="text-center">Add Content</h2>
+                <form id="contentForm">
+                    <div class="form-group">
+                        <label for="contentName">Name:</label>
+                        <input type="text" class="form-control" id="contentName" name="contentName">
+                    </div>
+                    <div class="form-group">
+                        <label for="contentType">Type:</label>
+                        <input type="text" class="form-control" id="contentType" name="contentType">
+                    </div>
+                    <div class="form-group">
+                        <label for="viewCount">View Count:</label>
+                        <input type="text" class="form-control" id="viewCount" name="viewCount">
+                    </div>
+                    <div class="form-group">
+                        <label for="parentID">Parent ID:</label>
+                        <input type="text" class="form-control" id="parentID" name="parentID">
+                    </div>
+                    <div class="form-group">
+                        <label for="registerType">Register Type:</label>
+                        <input type="text" class="form-control" id="registerType" name="registerType">
+                    </div>
+                    <div class="form-group">
+                        <label for="manufacturer">Manufacturer:</label>
+                        <input type="text" class="form-control" id="manufacturer" name="manufacturer">
+                    </div>
+                    <div class="form-group">
+                        <label for="serviceID">Service ID:</label>
+                        <input type="text" class="form-control" id="serviceID" name="serviceID">
+                    </div>
+                    <button type="button" class="btn btn-custom btn-block mt-3" onclick="addContent()">Add Content</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Link tới các script cần thiết, bao gồm Bootstrap JS và jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        function addContent() {
+            // Xử lý thêm dữ liệu ở đây
+        }
+    </script>
+</body>
+</html>
+
+
