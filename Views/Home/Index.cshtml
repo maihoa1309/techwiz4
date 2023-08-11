@@ -3,6 +3,12 @@
 
 }
 
+@using StreamTrace.Repository;
+@inject IContentRepository contentRepository;
+@{
+    var category = await contentRepository.FilterAsync(null, r => r.Type.Equals("movie"), "Id", false, 1, 10);
+}
+
 <section class="pt-0 pb-0">
         <div class="container-fluid px-0">
             <div class="row no-gutters">
