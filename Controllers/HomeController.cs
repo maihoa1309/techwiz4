@@ -12,33 +12,66 @@ namespace StreamTrace.Controllers
         {
 
         }
-
         public IActionResult Index()
         {
             return View();
         }
-        public IActionResult Privacy()
-        {
-            return View();
-        }
-        public IActionResult Movies()
-        {
-            return View();
-        }
-        public IActionResult Category()
-        {
-            return View();
-        }
+        //Movies
+            public IActionResult MoviesHome()
+            {
+                return View();
+            }
+            public IActionResult MoviesAll()
+            {
+                return View();
+            }
+            public IActionResult MovieDetail()
+            {
+                return View();
+            }
+            public IActionResult Genre()
+            {
+                return View();
+            }
+        //
 
-        public IActionResult IndexTvshow()
-        {
-            return View();
-        }
+        //TvShows
+            public IActionResult TvshowsHome()
+            {
+                return View();
+            }
+            public IActionResult TvshowStyle()
+            {
+                return View();
+            }
+            public IActionResult TvShowsAll()
+            {
+                return View();
+            }
+            public IActionResult TvshowsDetail()
+            {
+                return View();
+            }
+        //
 
-        public IActionResult TvshowStyle()
-        {
-            return View();
-        }
+        //Music
+            public IActionResult MusicHome()
+            {
+                return View();
+            }
+            public IActionResult SingerList()
+            {
+                return View();
+            }
+            public IActionResult MusicsAll()
+                {
+                    return View();
+                }
+            public IActionResult MusicDetail()
+            {
+                return View();
+            }
+        //
 
         public IActionResult TvShows()
         {
@@ -87,6 +120,26 @@ namespace StreamTrace.Controllers
         {
             return View("music");
         }
+        //contact/pricing
+            public IActionResult Pricing()
+            {
+                return View();
+            }
+            public IActionResult ContactUs()
+            {
+                return View();
+            }
+            public IActionResult Privacy()
+            {
+                return View();
+            }
+        //
+        //user
+            public IActionResult Users()
+            {
+                return View();
+            }
+        //
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
