@@ -1,0 +1,59 @@
+﻿
+@{
+    ViewData["Title"] = "AddOrUpdateSpectification";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Specification</title>
+    <!-- Link tới Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        /* Tùy chỉnh giao diện CSS ở đây */
+        .form-container {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+            .form-container h2 {
+                margin-bottom: 20px;
+            }
+
+        .btn-custom {
+            background-color: #007bff;
+            border-color: #007bff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8 form-container">
+                <h2 class="text-center">Add Specification</h2>
+                <form id="specificationForm">
+                    <div class="form-group">
+                        <label for="specName">Name:</label>
+                        <input type="text" class="form-control" id="specName" name="specName">
+                    </div>
+                    <button type="button" class="btn btn-custom btn-block mt-3" onclick="addSpecification()">Add Specification</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Link tới các script cần thiết, bao gồm Bootstrap JS và jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        function addSpecification() {
+            // Xử lý thêm dữ liệu ở đây
+        }
+    </script>
+</body>
+</html>
+
+

@@ -48,5 +48,45 @@ namespace StreamTrace.Controllers
         {
             return View();
         }
+        public IActionResult AddOrUpdateMovie()
+        {
+            return View();
+        }
+        public IActionResult AddOrUpdateTVShow()
+        {
+            return View();
+        }
+        public IActionResult AddOrUpdateMusic()
+        {
+            return View();
+        }
+        public IActionResult AddOrUpdateUser()
+        {
+            return View();
+        }
+        public IActionResult AddOrUpdateUser_sub()
+        {
+            return View();
+        }
+        public IActionResult AddOrUpdateSubscription()
+        {
+            return View();
+        }
+        public IActionResult AddOrUpdateService()
+        {
+            return View();
+        }
+        public IActionResult AddOrUpdateContent()
+        {
+            return View();
+        }
+        public IActionResult AddOrUpdateContentDetail()
+        {
+            return View();
+        }
+        public IActionResult AddOrUpdateSpectification()
+        {
+            return View();
+        }
     }
 }
