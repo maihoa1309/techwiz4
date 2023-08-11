@@ -8,9 +8,5 @@ namespace StreamTrace.Controllers
         {
             return View();
         }
-        public IActionResult Users()
-        {
-            return View();
-        }
     }
 }
