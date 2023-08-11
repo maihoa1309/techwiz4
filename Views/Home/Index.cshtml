@@ -8,7 +8,7 @@
 @inject IContentRepository contentRepository;
 @{
     var content = await contentRepository.GetFullDetail(14);
-//    var topFilms = await contentRepository.GetContentHighestViewCount();
+//   var topFilms = await contentRepository.GetContentHighestViewCount();
     var topMovie = await contentRepository.GetContentHighestViewCount("movie");
                         
 }
@@ -40,22 +40,22 @@
                         </div>
                     </div>
                 </div>
-            </div>
+                </div>
             <div class="row mt-3">
                 <div class="col-12">
                     <div class="gen-style-2">
                         <div class="owl-carousel owl-loaded owl-drag" data-dots="false" data-nav="true" data-desk_num="4"
                              data-lap_num="3" data-tab_num="2" data-mob_num="1" data-mob_sm="1" data-autoplay="false"
                              data-loop="false" data-margin="30">
-                            <!-- <div class="item"> -->
-                        @foreach (var movie in topMovie)
+                             <div class="item"> 
+                        @foreach(var movie in topMovie)
                         {
                              <div class="item">
                                 <div class="movie type-movie status-publish has-post-thumbnail hentry movie_genre-action movie_genre-adventure movie_genre-drama">
                                     <div class="gen-carousel-movies-style-2 movie-grid style-2">
                                         <div class="gen-movie-contain">
                                             <div class="gen-movie-img">
-                                            <img src="movie.ImgURL" alt="owl-carousel-video-image">
+                                            <img src="@movie.ImgURL" alt="owl-carousel-video-image">
                                                 <div class="gen-movie-add">
                                                     <div class="wpulike wpulike-heart">
                                                         <div class="wp_ulike_general_class wp_ulike_is_not_liked">
@@ -94,7 +94,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="gen-movie-action">
-                                                    <a href="single-movie.html" class="gen-button">
+                                                    <a href="@Url.Action("MovieDetail", new {id = movie.Id})" class="gen-button">
                                                         <i class="fa fa-play"></i>
                                                     </a>
                                                 </div>
@@ -102,7 +102,7 @@
                                             <div class="gen-info-contain">
                                                 <div class="gen-movie-info">
                                                     <h3>
-                                                        <a href="single-movie.html">
+                                                            <a href="@Url.Action("MovieDetail", new {id = movie.Id})">
                                                            @movie.Name
                                                         </a>
                                                     </h3>
