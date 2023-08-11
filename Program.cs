@@ -58,6 +58,6 @@ namespace StreamTrace
             app.MapRazorPages();
 
             app.Run();
-        }
+        }     
     }
 }
