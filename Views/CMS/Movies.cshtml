@@ -1,0 +1,40 @@
+﻿
+@{
+    ViewData["Title"] = "Movies";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h1>Movies</h1>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">ContentId</th>
+            <th scope="col">spectificationId</th>
+            <th scope="col">Value</th>
+            <th scope="col">Status</th>
+            <th scope="col">Trailer</th>
+            <th scope="col">Fullvideo</th>
+            <th scope="col">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <th scope="row">1</th>
+            <td>1</td>
+            <td>spectificationId</td>
+            <td>Value</td>
+            <td>Status</td>
+            <td>Trailer</td>
+            <td>url</td>
+            <td>
+                <div class="d-grid gap-3 d-md-block">
+                    <a href="javascript:void(0)" class="btn btn-success set-role">SetRole</a></li>
+                    <a href="javascript:void(0)" class="btn btn-warning cap-nhat">Update</a></li>
+                    <a href="javascript:void(0)" class="btn btn-danger dele-te">Delete</a></li>
+                </div>
+            </td>
+        </tr>
+
+    </tbody>
+</table>

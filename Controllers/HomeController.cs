@@ -50,7 +50,7 @@ namespace StreamTrace.Controllers
         }
         public IActionResult MovieDetail(int id)
         {
-            return View();
+            return View(id);
         }
         public IActionResult TvshowsDetail()
         {
@@ -67,6 +67,25 @@ namespace StreamTrace.Controllers
         public IActionResult ContactUs()
         {
             return View();
+        }
+
+        public IActionResult Users()
+        {
+            return View();
+        }
+
+        public IActionResult MusicDetail2()
+        {
+            return View("MusicDetail-2");
+        }
+        public IActionResult MusicDetail1()
+        {
+            return View("MusicDetail-1");
+        }
+
+        public IActionResult Music()
+        {
+            return View("music");
         }
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
