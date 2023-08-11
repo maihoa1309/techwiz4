@@ -54,7 +54,7 @@
                         {
                             <div class="item">
                                 <div class="movie type-movie status-publish has-post-thumbnail hentry movie_genre-action movie_genre-adventure movie_genre-drama">
-                                    @await Component.InvokeAsync("ContentItem", new { item = movie })
+                                    @await Component.InvokeAsync("ContentItem", new { item =  movie })
                                 </div>
                                 <!-- #post-## -->
                             </div>
@@ -298,7 +298,11 @@
     <div class="container">
         <div class="row">
             <div class="row no-gutters">
+
+                
+
                 @await Component.InvokeAsync("Content2", new { item = content3 })
+
             </div>
         </div>
     </div>
