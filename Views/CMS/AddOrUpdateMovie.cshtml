@@ -23,7 +23,7 @@
         <div class="row justify-content-center">
             <div class="col-md-8 form-container">
                 <h2>Add/Edit Movie</h2>
-                <form id="movieForm">
+                <form id="movieForm" method="POST" action="/Content/CreateMovie">
                     <div class="form-group">
                         <label for="name">Name:</label>
                         <input type="text" class="form-control" id="name" name="name">
@@ -60,7 +60,11 @@
                         <label for="fullvideo">Full Video URL:</label>
                         <input type="text" class="form-control" id="fullvideo" name="fullvideo">
                     </div>
-                    <button type="button" class="btn btn-primary btn-block mt-3" onclick="saveMovie()">Save</button>
+                    <div class="form-group">
+                        <label for="style">General:</label>
+                        <input type="text" class="form-control" id="style" name="style">
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block mt-3" >Save</button>
                 </form>
             </div>
         </div>
