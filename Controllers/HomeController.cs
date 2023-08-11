@@ -48,7 +48,7 @@ namespace StreamTrace.Controllers
         {
             return View();
         }
-        public IActionResult MovieDetail()
+        public IActionResult MovieDetail(int id)
         {
             return View();
         }
