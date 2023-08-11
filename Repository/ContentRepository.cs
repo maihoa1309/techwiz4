@@ -16,6 +16,7 @@ namespace StreamTrace.Repository
         
         Task <List<Content>> SortNameByDESC();
         Task<bool> CheckStatus(string name);
+        Task<bool> InsertOrUpdateMovie(FormInserOrUpdateContent req);
 
 
     }
@@ -96,6 +97,102 @@ namespace StreamTrace.Repository
             result.content = content;
             result.contentSpectifications = await q.ToListAsync();
             return result;
+        }
+
+        public async Task<bool> InsertOrUpdateMovie(FormInserOrUpdateContent req)
+        {
+            var content = new Content();
+            content.Name = req.name;
+            content.Type = "movie";
+            content.ImgURL = req.avatar;
+            content.Trailer = req.trailer;
+            content.FullVid = req.fullvideo;
+            _dbSet.Add(content);
+            _context.SaveChanges();
+            //Lay ra cac Spec
+            var checkDirector = _context.Spectification.Where(r => r.Name.Equals("Director")).FirstOrDefault();
+            var sDirectorId = 0;
+            if(checkDirector == null)
+            {
+                //Them 1 spec director vao
+                var sDirector = new Spectification();
+                sDirector.Name = "Director";
+                _context.Spectification.Add(sDirector);
+                _context.SaveChanges();
+                sDirectorId = sDirector.Id;
+            }
+            else
+            {
+                sDirectorId = checkDirector.Id;
+            }
+            //Add content detail
+            _context.ContentDetail.Add(new ContentDetail() { ContentId = content.Id, SpectificationId = sDirectorId, Value = req.director });
+
+            var checkActor = _context.Spectification.Where(r => r.Name.Equals("Actor")).FirstOrDefault();
+            var sActorId = 0;
+            if (checkActor == null)
+            {
+               var sActor =  new Spectification();
+                sActor.Name = "Actor";
+                _context.Spectification.Add(sActor); 
+                _context.SaveChanges();
+                sActorId = sActor.Id;
+            }
+            else
+            {
+                sActorId = checkActor.Id;
+            }
+            _context.ContentDetail.Add(new ContentDetail() {ContentId = content.Id, SpectificationId = sActorId, Value = req.actor });
+
+            var checkRunTime = _context.Spectification.Where(r => r.Name.Equals("RunTime")).FirstOrDefault();
+            var sRunTimeId = 0;
+            if (checkRunTime == null)
+            {
+                var sRunTime = new Spectification();
+                sRunTime.Name = "RunTime";
+                _context.Spectification.Add(sRunTime); 
+                _context.SaveChanges();
+                sRunTimeId = sRunTime.Id;
+            }else
+            {
+                sRunTimeId = checkRunTime.Id;
+            }
+            _context.ContentDetail.Add(new ContentDetail() { ContentId = content.Id, SpectificationId = sRunTimeId, Value = req.runtime });
+
+            var checkReleaseTime = _context.Spectification.Where(r => r.Name.Equals("Relase Date")).FirstOrDefault();
+            var sReleaseTimeId  = 0;
+            if (checkReleaseTime == null)
+            {
+                var sReleaseTime = new Spectification();
+                sReleaseTime.Name = "Relase Date";
+                _context.Spectification.Add(sReleaseTime);
+                _context.SaveChanges();
+                sReleaseTimeId = sReleaseTime.Id;
+            }
+            else
+            {
+                sReleaseTimeId= checkReleaseTime.Id;
+            }
+            _context.ContentDetail.Add(new ContentDetail() { ContentId = content.Id,SpectificationId = sReleaseTimeId,Value = req.releaseTime });
+
+            var checkStyle = _context.Spectification.Where(r => r.Name.Equals("General")).FirstOrDefault();
+            var sStyleId = 0;
+            if (checkStyle == null)
+            {
+                var sStyle = new Spectification();
+                sStyle.Name = "General";
+                _context.Spectification.Add(sStyle);
+                _context.SaveChanges();
+                sStyleId = sStyle.Id;
+            }
+            else
+            {
+                sStyleId= checkStyle.Id;
+            }
+            _context.ContentDetail.Add(new ContentDetail() { ContentId= content.Id,SpectificationId = sStyleId,Value = req.style });
+
+            return true;
+
         }
 
         public async Task<List<Content>> SortNameByASC()
