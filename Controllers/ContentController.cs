@@ -141,9 +141,9 @@ namespace StreamTrace.Controllers
             return View(contents);
         }
 
-        public async Task<IActionResult> GetHighestViewCount()
+        public async Task<IActionResult> GetHighestViewCount(string type)
         {
-            var contents = await _contentRepository.GetContentHighestViewCount();
+            var contents = await _contentRepository.GetContentHighestViewCount(type);
             return View(contents);
         }
 

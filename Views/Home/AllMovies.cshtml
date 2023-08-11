@@ -1,7 +1,7 @@
 ﻿@using StreamTrace.Repository;
 @inject IContentRepository contentRepository;
 @{
-    var allMovies = await contentRepository.FilterAsync(null, r => r.Type.Equals("movie"), "Id", false, 1, 10);
+    var allMovies = await contentRepository.FilterAsync(null, r => r.Type.Equals("movie"), "Id", false, 1, 100);
 }
 
 

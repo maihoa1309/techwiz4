@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using StreamTrace.Data;
+using StreamTrace.DTO;
 using StreamTrace.Models;
 using System.Drawing;
 
@@ -9,7 +10,8 @@ namespace StreamTrace.Repository
     public interface IContentRepository : IBaseRepository<Content>
     {
         Task<List<Content>> GetContentByName(string name, int index, int size);
-        Task<List<Content>> GetContentHighestViewCount();
+        Task<List<Content>> GetContentHighestViewCount(string type);
+        Task<ContentDetailDTO> GetFullDetail(int id);
         Task<List<Content>> SortNameByASC();
         
         Task <List<Content>> SortNameByDESC();
@@ -64,12 +66,36 @@ namespace StreamTrace.Repository
         }
 
        
-        public async Task<List<Content>> GetContentHighestViewCount()
+        public async Task<List<Content>> GetContentHighestViewCount(string type )
         {
-            var result = (from c in _context.Content 
-                        orderby c.ViewCount 
-                        select c).Take(5);
+            var result = (from c in _context.Content
+                          orderby c.ViewCount where c.Type.Equals(type)
+                          select c).Take(7);
             return await result.ToListAsync();
+        }
+
+        public async Task<ContentDetailDTO> GetFullDetail(int id)
+        {
+            var result = new ContentDetailDTO();
+
+            //Lay ra content
+            var content = await GetByIdAsync(id);
+
+            var q = from cd in _context.ContentDetail
+                    join s in _context.Spectification on cd.SpectificationId equals s.Id
+                    group cd by new { cd.ContentId, cd.SpectificationId, s.Name } into grouped
+                    where grouped.Key.ContentId == id
+                    select new ContentSpectification
+                    {
+                        ContentId = grouped.Key.ContentId,
+                        SpectificationId = grouped.Key.SpectificationId,
+                        SpectificationName = grouped.Key.Name,
+                        SpectificationValue = grouped.Select(r => r.Value).ToList()
+
+                    };
+            result.content = content;
+            result.contentSpectifications = await q.ToListAsync();
+            return result;
         }
 
         public async Task<List<Content>> SortNameByASC()
