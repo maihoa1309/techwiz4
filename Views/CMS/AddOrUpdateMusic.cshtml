@@ -1,14 +1,19 @@
-﻿
+﻿@model int
+@using StreamTrace.Repository
+@using StreamTrace.DTO
+@inject IContentRepository contentRepository
 @{
     ViewData["Title"] = "AddOrUpdateMusic";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    var fullData = new ContentDetailDTO();
+
+    if (Model > 0)
+    {
+        fullData = await contentRepository.GetFullDetail(Model);
+    }
 }
-<!DOCTYPE html>
-<html>
 <head>
-    <title>Add Music</title>
-    <!-- Link tới Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>Add/Edit Music</title>
     <style>
         /* Tùy chỉnh giao diện CSS ở đây */
         .form-container {
@@ -21,72 +26,96 @@
             .form-container h2 {
                 margin-bottom: 20px;
             }
-
-        .btn-custom {
-            background-color: #007bff;
-            border-color: #007bff;
-        }
     </style>
 </head>
 <body>
     <div class="container mt-5">
         <div class="row justify-content-center">
             <div class="col-md-8 form-container">
-                <h2 class="text-center">Add Music</h2>
-                <form id="musicForm">
-                    <div class="form-group">
-                        <label for="name">Name:</label>
-                        <input type="text" class="form-control" id="name" name="name">
-                    </div>
-                    <div class="form-group">
-                        <label for="description">Description:</label>
-                        <textarea class="form-control" id="description" name="description"></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label for="director">Director:</label>
-                        <input type="text" class="form-control" id="director" name="director">
-                    </div>
-                    <div class="form-group">
-                        <label for="singer">Singer:</label>
-                        <input type="text" class="form-control" id="singer" name="singer">
-                    </div>
-                    <div class="form-group">
-                        <label for="runtime">Runtime:</label>
-                        <input type="text" class="form-control" id="runtime" name="runtime">
-                    </div>
-                    <div class="form-group">
-                        <label for="releaseTime">Release Time:</label>
-                        <input type="date" class="form-control" id="releaseTime" name="releaseTime">
-                    </div>
-                    <div class="form-group">
-                        <label for="language">Language:</label>
-                        <input type="text" class="form-control" id="language" name="language">
-                    </div>
-                    <div class="form-group">
-                        <label for="genre">Style:</label>
-                        <input type="text" class="form-control" id="genre" name="style">
-                    </div>
-                    <div class="form-group">
-                        <label for="avatar">Avatar URL:</label>
-                        <input type="text" class="form-control" id="avatar" name="avatar">
-                    </div>
-                    <div class="form-group">
-                        <label for="fullvideo">Full Video URL:</label>
-                        <input type="text" class="form-control" id="fullvideo" name="fullvideo">
-                    </div>
-                    <button type="submit" class="btn btn-custom btn-block mt-3" onclick="addMusic()">Add Music</button>
-                </form>
+                <h2>Add/Edit Music</h2>
+                @if (fullData != null)
+                {
+                    var releaseDate = fullData.contentSpectifications.FirstOrDefault(r => r.SpectificationName.Equals("Release Time"));
+                    var name = @fullData.content.Name;
+                    var descriptionSpec = fullData.contentSpectifications.FirstOrDefault(r => r.SpectificationName.Equals("Description"));
+                    var description = "";
+                    if (descriptionSpec != null)
+                    {
+                        description = string.Join(",", descriptionSpec.SpectificationValue ?? new List<string>());
+                    }
+                    var singer = "";
+                    var singerSpec = fullData.contentSpectifications.FirstOrDefault(r => r.SpectificationName.Equals("Singer"));
+                    if (singerSpec != null)
+                    {
+                        singer = string.Join(",", singerSpec.SpectificationValue ?? new List<string>());
+                    }
+                    var runtime = "";
+                    var runtimeSpec = fullData.contentSpectifications.FirstOrDefault(r => r.SpectificationName.Equals("Runtime"));
+                    if (runtimeSpec != null)
+                    {
+                        runtime = string.Join(",", runtimeSpec.SpectificationValue);
+
+                    }
+
+                    var style = "";
+                    var styleSpec = fullData.contentSpectifications.FirstOrDefault(r => r.SpectificationName.Equals("General"));
+                    if (styleSpec != null)
+                    {
+                        style = string.Join(",", styleSpec.SpectificationValue);
+                    }
+
+                    var language = "";
+                    var languageSpec = fullData.contentSpectifications.FirstOrDefault(r => r.SpectificationName.Equals("Language"));
+                    if (languageSpec != null)
+                    {
+                        language = string.Join(",", languageSpec.SpectificationValue);
+                    }
+
+
+                    <form id="musicForm" method="POST" action="/Content/CreateMusic">
+                        <input type="number" style="display:none;" name="id" value="@Model">
+                        <div class="form-group">
+                            <label for="name">Name:</label>
+                            <input type="text" class="form-control" id="name" name="name" value="@name">
+                        </div>
+                        <div class="form-group">
+                            <label for="description">Description:</label>
+                            <textarea class="form-control" id="description" name="description">@description</textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="singer">Singer:</label>
+                            <input type="text" class="form-control" id="singer" name="singer" value="@singer">
+                        </div>
+                        <div class="form-group">
+                            <label for="runtime">Runtime:</label>
+                            <input type="text" class="form-control" id="runtime" name="runtime" value="@runtime">
+                        </div>
+                        <div class="form-group">
+                            <label for="releaseTime">Release Time:</label>
+                            <input type="date" class="form-control" id="releaseTime" name="@(releaseDate != null ? DateTime.Parse(releaseDate.SpectificationValue.FirstOrDefault()) : "")">
+                        </div>
+                        <div class="form-group">
+                            <label for="language">Language:</label>
+                            <input type="text" class="form-control" id="language" name="language" value="@language">
+                        </div><div class="form-group">
+                            <label for="fullvideo">Full Video URL:</label>
+                            <input type="text" class="form-control" id="fullvideo" name="fullvideo"
+                                   value="@fullData.content.FullVid">
+                        </div>
+                        <div class="form-group">
+                            <label for="avatar">Avatar URL:</label>
+                            <input type="text" class="form-control" id="avatar" name="avatar"
+                                   value="@fullData.content.ImgURL">
+                        </div>
+                        <div class="form-group">
+                            <label for="style">Style:</label>
+                            <input type="text" class="form-control" id="style" name="style" value="@style">
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                }
             </div>
         </div>
     </div>
-
-    <!-- Link tới các script cần thiết, bao gồm Bootstrap JS và jQuery -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script>
-        function addMusic() {
-            // Xử lý thêm dữ liệu ở đây
-        }
-    </script>
 </body>
-</html>
