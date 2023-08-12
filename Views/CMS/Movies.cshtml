@@ -1,7 +1,9 @@
-﻿
+﻿@using StreamTrace.Repository;
+@inject IContentRepository contentRepository
 @{
     ViewData["Title"] = "Movies";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    var contents = await contentRepository.GetContentByType("movie");
 }
 <head>
     <style>
@@ -40,47 +42,13 @@
     <div class="container mt-5">
         <div class="row justify-content-center">
             <div class="col-md-12 table-container">
-                <h2>Movies List</h2>
-                <div class="d-grid gap-2 d-md-block mb-3">
-                    <button class="btn btn-success" id="addButton" type="button">Add New</button>
+              <div class="row">
+                    <h2>Movies List</h2>
+                    <div class="d-grid gap-2 d-md-block mb-3">
+                        <button class="btn btn-success" id="addButton" type="button" style="float: right;">Add New</button>
+                    </div>
                 </div>
-                <table class="table table-striped table-bordered">
-                    <thead>
-                        <tr>
-                            <th scope="col">Id</th>
-                            <th scope="col">Name</th>
-                            <th scope="col">Description</th>
-                            <th scope="col">Director</th>
-                            <th scope="col">Ator</th>
-                            <th scope="col">Runtime</th>
-                            <th scope="col">ReleseTime</th>
-                            <th scope="col">Trailer</th>
-                            <th scope="col">Avartar</th>
-                            <th scope="col">Fullvideo</th>
-                            <th scope="col" class="">Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>Name</td>
-                            <td>Description</td>
-                            <td>Director</td>
-                            <td>Ator</td>
-                            <td>Runtime</td>
-                            <td>ReleaseTime</td>
-                            <td>Trailer</td>
-                            <td>Avartar</td>
-                            <td>Fullvideo</td>
-                            <td>
-                                <div class="d-grid gap-3 d-md-block">
-                                    <button class="btn btn-warning" id="editButton" type="button">Update</button>
-                                    <button class="btn btn-danger" id="deleteButton" type="button">Delete</button>
-                                </div>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+                @await Component.InvokeAsync("showDataAdmin", new { item = contents, type = "movie"})
             </div>
         </div>
     </div>
@@ -88,15 +56,5 @@
     <!-- Link tới các script cần thiết, bao gồm Bootstrap JS và jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script>
-        document.getElementById("addButton").addEventListener("click", function () {
-            window.location.href = "AddOrUpdateMovie";
-        });
-        document.getElementById("editButton").addEventListener("click", function () {
-            window.location.href = "AddOrUpdateMovie";
-        });
-        //document.getElementById("deleteButton").addEventListener("click", function () {
-        //    window.location.href = "AddOrUpdateMovie";
-        //});
-    </script>
+   
 </body>

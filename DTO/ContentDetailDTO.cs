@@ -4,9 +4,9 @@ namespace StreamTrace.DTO
 {
     public class ContentDetailDTO
     {
-        public Content? content { get; set; }
+        public Content? content { get; set; } = new Content();
 
-        public List<ContentSpectification>? contentSpectifications { get; set; } 
+        public List<ContentSpectification>? contentSpectifications { get; set; } = new List<ContentSpectification>();
     }
 
     public class ContentSpectification
