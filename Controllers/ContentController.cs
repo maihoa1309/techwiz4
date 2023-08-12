@@ -38,7 +38,6 @@ namespace StreamTrace.Controllers
 
         public IActionResult UpdateMovie(FormInserOrUpdateContent request)
         {
-
             var id = request.id;
             _contentRepository.InsertOrUpdateContent(request, "tvshow", id);
             return RedirectToAction("Movies", "CMS");
