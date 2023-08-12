@@ -1,15 +1,22 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using StreamTrace.Data;
 
 namespace StreamTrace.Controllers
 {
     public class CMSController : Controller
     {
+        private readonly ApplicationDbContext _context;
+        public CMSController(ApplicationDbContext context)
+        {
+            _context = context;
+        }
         public IActionResult Index()
         {
             return View();
         }
         public IActionResult Movies()
         {
+            
             return View();
         }
         public IActionResult TVShows()
@@ -48,9 +55,9 @@ namespace StreamTrace.Controllers
         {
             return View();
         }
-        public IActionResult AddOrUpdateMovie()
+        public IActionResult AddOrUpdateMovie(int id = 0)
         {
-            return View();
+            return View(id);
         }
         public IActionResult AddOrUpdateTVShow()
         {

@@ -1,7 +1,19 @@
-﻿
+﻿@model int
+@using StreamTrace.Repository
+@using StreamTrace.DTO
+@inject IContentRepository contentRepository
 @{
     ViewData["Title"] = "AddOrUpdateMovie";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    var fullData = new ContentDetailDTO();
+    var urlAction = "/Content/CreateMovie";
+    if(Model > 0)
+    {
+        fullData = await contentRepository.GetFullDetail(Model);
+        urlAction = string.Format("/Content/UpdateMovie/{0}", Model);
+    }
+    
+    
 }
 <head>
     <title>Add/Edit Movie</title>
@@ -23,49 +35,63 @@
         <div class="row justify-content-center">
             <div class="col-md-8 form-container">
                 <h2>Add/Edit Movie</h2>
-                <form id="movieForm" method="POST" action="/Content/CreateMovie">
-                    <div class="form-group">
-                        <label for="name">Name:</label>
-                        <input type="text" class="form-control" id="name" name="name">
-                    </div>
-                    <div class="form-group">
-                        <label for="description">Description:</label>
-                        <textarea class="form-control" id="description" name="description"></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label for="director">Director:</label>
-                        <input type="text" class="form-control" id="director" name="director">
-                    </div>
-                    <div class="form-group">
-                        <label for="actor">Actor:</label>
-                        <input type="text" class="form-control" id="actor" name="actor">
-                    </div>
-                    <div class="form-group">
-                        <label for="runtime">Runtime:</label>
-                        <input type="text" class="form-control" id="runtime" name="runtime">
-                    </div>
-                    <div class="form-group">
-                        <label for="releaseTime">Release Time:</label>
-                        <input type="date" class="form-control" id="releaseTime" name="releaseTime">
-                    </div>
-                    <div class="form-group">
-                        <label for="trailer">Trailer URL:</label>
-                        <input type="text" class="form-control" id="trailer" name="trailer">
-                    </div>
-                    <div class="form-group">
-                        <label for="avatar">Avatar URL:</label>
-                        <input type="text" class="form-control" id="avatar" name="avatar">
-                    </div>
-                    <div class="form-group">
-                        <label for="fullvideo">Full Video URL:</label>
-                        <input type="text" class="form-control" id="fullvideo" name="fullvideo">
-                    </div>
-                    <div class="form-group">
-                        <label for="style">General:</label>
-                        <input type="text" class="form-control" id="style" name="style">
-                    </div>
-                    <button type="submit" class="btn btn-primary btn-block mt-3" >Save</button>
-                </form>
+                @if(fullData != null)
+                {
+                    var releaseDate = fullData.contentSpectifications.FirstOrDefault(r => r.SpectificationName.Equals("Release Time"));
+                    <form id="movieForm" method="POST" action=@urlAction>
+                        <div class="form-group">
+                            <label for="name">Name:</label>
+                            <input type="text" class="form-control" id="name" name="name" value="@fullData.content.Name">
+                        </div>
+                        <div class="form-group">
+                            <label for="description">Description:</label>
+                            <textarea class="form-control" id="description" name="description">@string.Join(",",fullData.contentSpectifications.FirstOrDefault(r => r.SpectificationName.Equals("Description")).SpectificationValue)
+                            </textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="director">Director:</label>
+                            <input type="text" class="form-control" id="director" name="director"
+                               value="@string.Join(",",fullData.contentSpectifications.FirstOrDefault(r => r.SpectificationName.Equals("Director")).SpectificationValue)">
+                        </div>
+                        <div class="form-group">
+                            <label for="actor">Actor:</label>
+                            <input type="text" class="form-control" id="actor" name="actor"
+                               value="@string.Join(",",fullData.contentSpectifications.FirstOrDefault(r => r.SpectificationName.Equals("Actor")).SpectificationValue)">
+                        </div>
+                        <div class="form-group">
+                            <label for="runtime">Runtime:</label>
+                            <input type="text" class="form-control" id="runtime" name="runtime"
+                               value="@string.Join(",",fullData.contentSpectifications.FirstOrDefault(r => r.SpectificationName.Equals("Runtime")).SpectificationValue)">
+                        </div>
+                        <div class="form-group">
+                            <label for="releaseTime">Release Time:</label>
+                            <input type="date" class="form-control" id="releaseTime" name="releaseTime"
+                               value="@(releaseDate != null ? DateTime.Parse(releaseDate.SpectificationValue.FirstOrDefault()) : "")">
+                        </div>
+                        <div class="form-group">
+                            <label for="trailer">Trailer URL:</label>
+                            <input type="text" class="form-control" id="trailer" name="trailer"
+                               value="@fullData.content.Trailer">
+                        </div>
+                        <div class="form-group">
+                            <label for="avatar">Avatar URL:</label>
+                            <input type="text" class="form-control" id="avatar" name="avatar"
+                            value="@fullData.content.ImgURL">
+                        </div>
+                        <div class="form-group">
+                            <label for="fullvideo">Full Video URL:</label>
+                            <input type="text" class="form-control" id="fullvideo" name="fullvideo"
+                            value="@fullData.content.FullVid">
+                        </div>
+                        <div class="form-group">
+                            <label for="style">General:</label>
+                            <input type="text" class="form-control" id="style" name="style"
+                               value="@string.Join(",",fullData.contentSpectifications.FirstOrDefault(r => r.SpectificationName.Equals("General")).SpectificationValue)">
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block mt-3">Save</button>
+                    </form>
+                }
+                
             </div>
         </div>
     </div>
