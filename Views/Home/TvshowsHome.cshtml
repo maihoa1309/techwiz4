@@ -1,7 +1,7 @@
 ﻿@using StreamTrace.Repository;
 @inject IContentRepository contentRepository;
 @{
-    ViewData["Title"] = "TvshowsAll";
+    ViewData["Title"] = "TvshowsHome";
     Layout = "~/Views/Shared/_LayoutWEB.cshtml";
     var content1 = await contentRepository.GetFullDetail(17);
     var content2 = await contentRepository.GetFullDetail(18);
@@ -17,7 +17,7 @@
         <div class="container-fluid px-0">
             <div class="gen-nav-movies gen-banner-movies">
                 <div class="row no-gutters">
-                @await Component.InvokeAsync("Content2", new { item = content4 });
+                @await Component.InvokeAsync("Content2", new { item = content4 })
                 </div>
             </div>
         </div>
@@ -49,7 +49,7 @@
                         @foreach (var content in allTvShows)
                         {
                             @await Component.InvokeAsync("ContentItem", new { item = content })
-                            ;
+                            
                         }
                     </div>
                            
@@ -86,7 +86,7 @@
                         @foreach (var content in topMovie)
                         {
                             @await Component.InvokeAsync("ContentItem", new { item = content })
-                            ;
+                            
                         }
                         </div>
                     </div>
@@ -145,7 +145,7 @@
                         @foreach (var content in topMusic)
                         {
                             @await Component.InvokeAsync("ContentItem", new { item = content })
-                            ;
+                            
                         }
                         </div>
                     </div>

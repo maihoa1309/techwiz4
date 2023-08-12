@@ -25,10 +25,7 @@ namespace StreamTrace.Controllers
             {
                 return View();
             }
-            public IActionResult MovieDetail()
-            {
-                return View();
-            }
+           
             public IActionResult Genre()
             {
                 return View();
@@ -40,17 +37,14 @@ namespace StreamTrace.Controllers
             {
                 return View();
             }
-            public IActionResult TvshowStyle()
-            {
-                return View();
-            }
+          
             public IActionResult TvShowsAll()
             {
                 return View();
             }
-            public IActionResult TvshowsDetail()
+            public IActionResult TvshowsDetail(int id)
             {
-                return View();
+                return View(id);
             }
         //
 
@@ -67,28 +61,19 @@ namespace StreamTrace.Controllers
                 {
                     return View();
                 }
-            public IActionResult MusicDetail()
+            public IActionResult MusicDetail(int id)
             {
-                return View();
+                return View(id);
             }
         //
 
-        public IActionResult TvShows()
-        {
-            return View();
-        }
-        public IActionResult TvshowsAll()
-        {
-            return View();
-        }
+   
+    
         public IActionResult MovieDetail(int id)
         {
             return View(id);
         }
-        public IActionResult TvshowsDetail()
-        {
-            return View();
-        }
+        
         public IActionResult Pricing()
         {
             return View();
@@ -107,38 +92,22 @@ namespace StreamTrace.Controllers
             return View();
         }
 
-        public IActionResult MusicDetail2()
-        {
-            return View("MusicDetail-2");
-        }
-        public IActionResult MusicDetail1()
-        {
-            return View("MusicDetail-1");
-        }
-
+        
         public IActionResult Music()
         {
-            return View("music");
+            return View();
         }
+
+       
         //contact/pricing
-            public IActionResult Pricing()
-            {
-                return View();
-            }
-            public IActionResult ContactUs()
-            {
-                return View();
-            }
+           
             public IActionResult Privacy()
             {
                 return View();
             }
         //
         //user
-            public IActionResult Users()
-            {
-                return View();
-            }
+           
         //
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
