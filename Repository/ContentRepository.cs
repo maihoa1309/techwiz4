@@ -115,9 +115,9 @@ namespace StreamTrace.Repository
                         }).ToListAsync();
             
             var result = (from c in contents
-                         join q in query on c.Id equals q.ContentId
-                         group q by c into grouped
-                         select new ContentDetailDTO
+                          join q in query on c.Id equals q.ContentId
+                          group q by c into grouped
+                          select new ContentDetailDTO
                          {
                              content = grouped.Key,
                              contentSpectifications = grouped.ToList()
