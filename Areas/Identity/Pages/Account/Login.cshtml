@@ -6,81 +6,185 @@
     ViewData["Title"] = "Log in";
 }
     
-<h1>@ViewData["Title"]</h1>
-<div class="row">
-    <div class="col-md-4">
-        <section>
-            <form id="account" method="post">
-                <h2>Use a local account to log in.</h2>
-                <hr />
-                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                <div class="form-floating">
-                    <input asp-for="Input.Email" class="form-control" autocomplete="username" aria-required="true" />
-                    <label asp-for="Input.Email" class="form-label"></label>
-                    <span asp-validation-for="Input.Email" class="text-danger"></span>
-                </div>
-                <div class="form-floating">
-                    <input asp-for="Input.Password" class="form-control" autocomplete="current-password" aria-required="true" />
-                    <label asp-for="Input.Password" class="form-label"></label>
-                    <span asp-validation-for="Input.Password" class="text-danger"></span>
-                </div>
-                <div>
-                    <div class="checkbox">
-                        <label asp-for="Input.RememberMe" class="form-label">
-                            <input class="form-check-input" asp-for="Input.RememberMe" />
-                            @Html.DisplayNameFor(m => m.Input.RememberMe)
-                        </label>
-                    </div>
-                </div>
-                <div>
-                    <button id="login-submit" type="submit" class="w-100 btn btn-lg btn-primary">Log in</button>
-                </div>
-                <div>
-                    <p>
-                        <a id="forgot-password" asp-page="./ForgotPassword">Forgot your password?</a>
-                    </p>
-                    <p>
-                        <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Register as a new user</a>
-                    </p>
-                    <p>
-                        <a id="resend-confirmation" asp-page="./ResendEmailConfirmation">Resend email confirmation</a>
-                    </p>
-                </div>
-            </form>
-        </section>
-    </div>
-    <div class="col-md-6 col-md-offset-2">
-        <section>
-            <h3>Use another service to log in.</h3>
-            <hr />
-            @{
-                if ((Model.ExternalLogins?.Count ?? 0) == 0)
-                {
-                    <div>
-                        <p>
-                            There are no external authentication services configured. See this <a href="https://go.microsoft.com/fwlink/?LinkID=532715">article
-                            about setting up this ASP.NET application to support logging in via external services</a>.
-                        </p>
-                    </div>
-                }
-                else
-                {
-                    <form id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal">
-                        <div>
-                            <p>
-                                @foreach (var provider in Model.ExternalLogins!)
-                                {
-                                    <button type="submit" class="btn btn-primary" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">@provider.DisplayName</button>
-                                }
-                            </p>
-                        </div>
-                    </form>
-                }
-            }
-        </section>
-    </div>
-</div>
+<!DOCTYPE html>
+<html lang="en">
 
-@section Scripts {
-    <partial name="_ValidationScriptsPartial" />
-}
+
+<!-- Mirrored from template.gentechtreedesign.com/html/streamlab/html/log-in.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 09 Aug 2023 05:15:11 GMT -->
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="Streamlab - Video Streaming HTML5 Template" />
+    <meta name="description" content="Streamlab - Video Streaming HTML5 Template" />
+    <meta name="author" content="StreamLab" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Streamlab - Video Streaming HTML5 Template</title>
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="/images/favicon.ico">
+    <!-- CSS bootstrap-->
+    <link rel="stylesheet" href="/css/bootstrap.min.css" />
+    <!--  Style -->
+    <link rel="stylesheet" href="/css/style.css" />
+    <!--  Responsive -->
+    <link rel="stylesheet" href="/css/responsive.css" />
+    <style>
+        #account {
+            padding: 30px;
+            background: var(--dark-color);
+            position: relative;
+            z-index: 9;
+            width: 500px;
+            display: inline-block;
+            text-align: left;
+        }
+
+        #account {
+            padding: 30px;
+            background: var(--dark-color);
+            position: relative;
+            z-index: 9;
+            width: 500px;
+            display: inline-block;
+            text-align: left;
+        }
+
+            #account strong {
+                font-weight: 400;
+            }
+
+            #account h4,
+            #pms_register-form h4,
+            #pms_recover_password_form h4 {
+                border-bottom: 1px solid var(--black-color);
+                position: relative;
+                margin: 0px 0 20px 0;
+                padding: 0 0 10px 0;
+                text-transform: uppercase;
+            }
+
+                #account h4:before,
+                #pms_register-form h4:before,
+                #pms_recover_password_form h4:before {
+                    content: "";
+                    position: absolute;
+                    bottom: -2px;
+                    left: 0;
+                    display: inline-block;
+                    width: 100px;
+                    height: 3px;
+                    background: var(--primary-color);
+                }
+
+            #account p {
+                display: inline-block;
+                width: 100%;
+                margin-bottom: 15px;
+            }
+
+                #account p.login-submit {
+                    margin-bottom: 0;
+                }
+
+                #account p label {
+                    margin: 0;
+                    font-family: var(--title-fonts);
+                    color: var(--white-color);
+                    font-weight: 400;
+                    line-height: 26px;
+                    font-size: 18px;
+                }
+
+    </style>
+</head>
+
+<body>
+    <!-- Log-in  -->
+    <section class="position-relative pb-0">
+        <div class="gen-login-page-background" style="background-image: url(/images/background/asset-54.jpg);"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="text-center">
+                        <form id="account" method="post">
+                            <h4>Sign In</h4>
+                            <p class="login-username">
+                                <label for="user_login">Email Address *</label>
+                                <input type="text" asp-for="Input.Email" class="input" autocomplete="username" aria-required="true" value="" size="20">
+                                <span asp-validation-for="Input.Email" class="text-danger"></span>
+                            </p>
+                            <p class="login-password">
+                                <label for="user_pass">Password *</label>
+                                <input type="password" asp-for="Input.Password" class="input" autocomplete="current-password" aria-required="true" value="" size="20">
+                                <span asp-validation-for="Input.Password" class="text-danger"></span>
+                            </p>
+                            <p class="login-remember">
+                                <label asp-for="Input.RememberMe">
+                                    <input name="rememberme" asp-for="Input.RememberMe" type="checkbox" id="rememberme" value="forever"> @Html.DisplayNameFor(m => m.Input.RememberMe)
+                                </label>
+                            </p>
+                            <div>
+                                <button id="login-submit" type="submit" class="w-100 btn btn-lg btn-primary">Log in</button>
+                            </div>
+                            <input type="hidden" name="pms_login" value="1"><input type="hidden" name="pms_redirect"><a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Register</a> | <a href="">
+                                Lost your
+                                password?
+                            </a>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-md-offset-2">
+                <section>
+                    @{
+                        if ((Model.ExternalLogins?.Count ?? 0) == 0)
+                        {
+                        }
+                        else
+                        {
+                            <form id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal">
+                                <div>
+                                    <p>
+                                        @foreach (var provider in Model.ExternalLogins!)
+                                        {
+                                            <button type="submit" class="btn btn-primary" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">@provider.DisplayName</button>
+                                        }
+                                    </p>
+                                </div>
+                            </form>
+                        }
+                    }
+                </section>
+            </div>
+        </div>
+    </section>
+    @section Scripts {
+        <partial name="_ValidationScriptsPartial" />
+    }
+    <!-- Log-in  -->
+    <!-- Back-to-Top start -->
+
+    <!-- Back-to-Top end -->
+    <!-- js-min -->
+    <script src="/js/jquery-3.6.0.min.js"></script>
+    <script src="/js/asyncloader.min.js"></script>
+    <!-- JS bootstrap -->
+    <script src="/js/bootstrap.min.js"></script>
+    <!-- owl-carousel -->
+    <script src="/js/owl.carousel.min.js"></script>
+    <!-- counter-js -->
+    <script src="/js/jquery.waypoints.min.js"></script>
+    <script src="/js/jquery.counterup.min.js"></script>
+    <!-- popper-js -->
+    <script src="/js/popper.min.js"></script>
+    <script src="/js/swiper-bundle.min.js"></script>
+    <!-- Iscotop -->
+    <script src="/js/isotope.pkgd.min.js"></script>
+
+    <script src="/js/jquery.magnific-popup.min.js"></script>
+
+    <script src="/js/slick.min.js"></script>
+
+    <script src="/js/streamlab-core.js"></script>
+
+    <script src="/js/script.js"></script>
+</body>
+</html>

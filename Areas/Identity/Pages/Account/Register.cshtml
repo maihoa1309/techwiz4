@@ -5,64 +5,216 @@
     ViewData["Title"] = "Register";
 }
 
-<h1>@ViewData["Title"]</h1>
+<!DOCTYPE html>
+<html lang="en">
 
-<div class="row">
-    <div class="col-md-4">
-        <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post">
-            <h2>Create a new account.</h2>
-            <hr />
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-floating">
-                <input asp-for="Input.Email" class="form-control" autocomplete="username" aria-required="true" />
-                <label asp-for="Input.Email"></label>
-                <span asp-validation-for="Input.Email" class="text-danger"></span>
+
+<!-- Mirrored from template.gentechtreedesign.com/html/streamlab/html/register.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 09 Aug 2023 05:15:13 GMT -->
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="Streamlab - Video Streaming HTML5 Template" />
+    <meta name="description" content="Streamlab - Video Streaming HTML5 Template" />
+    <meta name="author" content="StreamLab" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Streamlab - Video Streaming HTML5 Template</title>
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="/images/favicon.ico">
+    <!-- CSS bootstrap-->
+    <link rel="stylesheet" href="/css/bootstrap.min.css" />
+    <!--  Style -->
+    <link rel="stylesheet" href="/css/style.css" />
+    <!--  Responsive -->
+    <link rel="stylesheet" href="/css/responsive.css" />
+    <style>
+        #account h4,
+        #registerForm h4,
+        #pms_recover_password_form h4 {
+            border-bottom: 1px solid var(--black-color);
+            position: relative;
+            margin: 0px 0 20px 0;
+            padding: 0 0 10px 0;
+            text-transform: uppercase;
+        }
+
+        #account h4:before,
+        #registerForm h4:before,
+        #pms_recover_password_form h4:before {
+            content: "";
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            display: inline-block;
+            width: 100px;
+            height: 3px;
+            background: var(--primary-color);
+        }
+
+        .gen-pms-register .content-area .site-main {
+            display: flex;
+            align-items: center;
+            text-align: center;
+            height: 100vh;
+        }
+
+        #registerForm {
+            padding: 30px;
+            background: var(--dark-color);
+            position: relative;
+            z-index: 9;
+            width: 750px;
+            display: inline-block;
+            text-align: left;
+            margin-top: 20px;
+        }
+
+        form#registerForm.pms-form ul.pms-form-fields-wrapper li label {
+            margin: 0;
+            font-family: var(--title-fonts);
+            color: var(--white-color);
+            font-weight: 400;
+            line-height: 26px;
+            font-size: 18px;
+        }
+
+        form#registerForm.pms-form ul.pms-form-fields-wrapper li {
+            display: inline-block;
+            width: 48%;
+            float: left;
+            margin-bottom: 15px;
+            position: relative;
+        }
+
+            form#registerForm.pms-form ul.pms-form-fields-wrapper li:nth-child(even) {
+                float: right;
+            }
+
+            form#registerForm.pms-form ul.pms-form-fields-wrapper li.pms-field.pms-field-subscriptions {
+                width: 100%;
+            }
+
+        #registerForm .pms-subscription-plan {
+            margin-bottom: 0;
+            margin-top: 15px;
+        }
+
+        #registerForm #pms-paygates-wrapper {
+            margin-bottom: 0;
+            margin-top: 15px;
+        }
+
+        #registerForm #pms-paygates-inner label input.pms_pay_gate {
+            margin-left: 15px;
+        }
+
+        .pms_field-errors-wrapper {
+            position: absolute;
+            left: 15px;
+            bottom: 15px;
+        }
+
+            .pms_field-errors-wrapper p {
+                margin: 0;
+            }
+
+        #registerSubmit{
+            margin-top:20px;
+        }
+
+        li {
+            list-style-type: none; /* Loại bỏ dấu chấm */
+            padding-left: 0; /* Loại bỏ khoảng trắng bên trái */
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- register -->
+    <section class="position-relative pb-0">
+        <div class="gen-register-page-background" style="background-image: url(/images/background/asset-3.jpg);">
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="text-center">
+                        <form id="registerForm" class="pms-form" method="POST">
+                            <h4>Register</h4>
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                <li class="pms-field pms-user-email-field ">
+                                    <label for="pms_user_email">E-mail *</label>
+                                    <input asp-for="Input.Email" class="form-control" autocomplete="username" aria-required="true" type="text" value="">
+                                    <span asp-validation-for="Input.Email" class="text-danger"></span>
+                                </li>
+                                <li class="pms-field pms-pass1-field">
+                                    <label for="pms_pass1">Password *</label>
+                                    <input asp-for="Input.Password" class="form-control" autocomplete="new-password" aria-required="true" type="password">
+                                    <span asp-validation-for="Input.Password" class="text-danger"></span>
+                                </li>
+                                <li class="pms-field pms-pass2-field">
+                                    <label for="pms_pass2">Repeat Password *</label>
+                                    <input asp-for ="Input.ConfirmPassword" class="form-control" autocomplete="new-password" aria-required="true" type="password">
+                                    <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+                                </li>
+                            <div> <button id="registerSubmit" type="submit" class="w-100 btn btn-lg btn-primary">Register</button></div>
+                        </form>
+                    </div>
+                </div>
             </div>
-            <div class="form-floating">
-                <input asp-for="Input.Password" class="form-control" autocomplete="new-password" aria-required="true" />
-                <label asp-for="Input.Password"></label>
-                <span asp-validation-for="Input.Password" class="text-danger"></span>
-            </div>
-            <div class="form-floating">
-                <input asp-for="Input.ConfirmPassword" class="form-control" autocomplete="new-password" aria-required="true" />
-                <label asp-for="Input.ConfirmPassword"></label>
-                <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
-            </div>
-            <button id="registerSubmit" type="submit" class="w-100 btn btn-lg btn-primary">Register</button>
-        </form>
-    </div>
-    <div class="col-md-6 col-md-offset-2">
-        <section>
-            <h3>Use another service to register.</h3>
-            <hr />
-            @{
-                if ((Model.ExternalLogins?.Count ?? 0) == 0)
-                {
+        </div>
+    </section>
+    <!-- register -->
+    <!-- Back-to-Top start -->
+    <section>
+        @{
+            if ((Model.ExternalLogins?.Count ?? 0) == 0)
+            {
+            }
+            else
+            {
+                <form id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal">
                     <div>
                         <p>
-                            There are no external authentication services configured. See this <a href="https://go.microsoft.com/fwlink/?LinkID=532715">article
-                            about setting up this ASP.NET application to support logging in via external services</a>.
+                            @foreach (var provider in Model.ExternalLogins!)
+                            {
+                                <button type="submit" class="btn btn-primary" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">@provider.DisplayName</button>
+                            }
                         </p>
                     </div>
-                }
-                else
-                {
-                    <form id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal">
-                        <div>
-                            <p>
-                                @foreach (var provider in Model.ExternalLogins!)
-                                {
-                                    <button type="submit" class="btn btn-primary" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">@provider.DisplayName</button>
-                                }
-                            </p>
-                        </div>
-                    </form>
-                }
+                </form>
             }
-        </section>
-    </div>
-</div>
+        }
+    </section>
+    @section Scripts {
+        <partial name="_ValidationScriptsPartial" />
+    }
+    <!-- Back-to-Top end -->
+    <!-- js-min -->
+    <script src="/js/jquery-3.6.0.min.js"></script>
+    <script src="/js/asyncloader.min.js"></script>
+    <!-- JS bootstrap -->
+    <script src="/js/bootstrap.min.js"></script>
+    <!-- owl-carousel -->
+    <script src="/js/owl.carousel.min.js"></script>
+    <!-- counter-js -->
+    <script src="/js/jquery.waypoints.min.js"></script>
+    <script src="/js/jquery.counterup.min.js"></script>
+    <!-- popper-js -->
+    <script src="/js/popper.min.js"></script>
+    <script src="/js/swiper-bundle.min.js"></script>
+    <!-- Iscotop -->
+    <script src="/js/isotope.pkgd.min.js"></script>
 
-@section Scripts {
-    <partial name="_ValidationScriptsPartial" />
-}
+    <script src="/js/jquery.magnific-popup.min.js"></script>
+
+    <script src="/js/slick.min.js"></script>
+
+    <script src="/js/streamlab-core.js"></script>
+
+    <script src="/js/script.js"></script>
+
+
+</body>
+
+
+<!-- Mirrored from template.gentechtreedesign.com/html/streamlab/html/register.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 09 Aug 2023 05:15:13 GMT -->
+</html>

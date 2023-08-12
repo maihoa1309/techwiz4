@@ -16,10 +16,10 @@ namespace StreamTrace.Repository
 
         Task<List<Content>> SortNameByDESC();
         Task<bool> CheckStatus(string name);
-        Task<bool> InsertOrUpdateMovie(FormInserOrUpdateContent req, string type);
+        Task<bool> InsertOrUpdateContent(FormInserOrUpdateContent req, string type, int id);
         Task<List<ContentDetailDTO>> GetContentByType(string type);
 
-
+        //Task<List<ContentDetailDTO>> GetContentByGeneral(string general, string value);
     }
     public class ContentRepository : BaseRepository<Content>, IContentRepository
     {
@@ -125,10 +125,8 @@ namespace StreamTrace.Repository
             return result.ToList();
 
 
-
-
         }
-        public async Task<bool> InsertOrUpdateMovie(FormInserOrUpdateContent req, string type)
+        public async Task<bool> InsertOrUpdateContent(FormInserOrUpdateContent req, string type, int id)
         {
             var content = new Content();
             content.Name = req.name;
@@ -136,8 +134,22 @@ namespace StreamTrace.Repository
             content.ImgURL = req.avatar;
             content.Trailer = req.trailer;
             content.FullVid = req.fullvideo;
-            _dbSet.Add(content);
+            if (id> 0)
+            {
+                _dbSet.Update(content);
+            }
+            else
+            {
+                _dbSet.Add(content);
+            }
             _context.SaveChanges();
+            //Voi UPDATE => Xoa tat ca du lieu lien quan o bang ContentDetail
+            if(id > 0)
+            {
+                var olderDeltails = _context.ContentDetail.Where(r => r.ContentId == id);
+                _context.ContentDetail.RemoveRange(olderDeltails);
+            }
+
             //Lay ra cac Spec
             if (req.director != null)
             {
@@ -157,7 +169,8 @@ namespace StreamTrace.Repository
                     sDirectorId = checkDirector.Id;
                 }
                 //Add content detail
-                _context.ContentDetail.Add(new ContentDetail() { ContentId = content.Id, SpectificationId = sDirectorId, Value = req.director });
+                
+               
             }
             if (req.actor != null)
             {
@@ -174,8 +187,9 @@ namespace StreamTrace.Repository
                 else
                 {
                     sActorId = checkActor.Id;
-                }
-                _context.ContentDetail.Add(new ContentDetail() { ContentId = content.Id, SpectificationId = sActorId, Value = req.actor });
+                }               
+                    _context.ContentDetail.Add(new ContentDetail() { ContentId = content.Id, SpectificationId = sActorId, Value = req.actor });
+              
             }
           
             if (req.runtime != null)
@@ -194,7 +208,9 @@ namespace StreamTrace.Repository
                 {
                     sRunTimeId = checkRunTime.Id;
                 }
-                _context.ContentDetail.Add(new ContentDetail() { ContentId = content.Id, SpectificationId = sRunTimeId, Value = req.runtime });
+
+                 _context.ContentDetail.Add(new ContentDetail() { ContentId = content.Id, SpectificationId = sRunTimeId, Value = req.runtime });
+
             }
            
 
@@ -214,7 +230,9 @@ namespace StreamTrace.Repository
                 {
                     sReleaseTimeId = checkReleaseTime.Id;
                 }
-                _context.ContentDetail.Add(new ContentDetail() { ContentId = content.Id, SpectificationId = sReleaseTimeId, Value = req.releaseTime });
+
+                    _context.ContentDetail.Add(new ContentDetail() { ContentId = content.Id, SpectificationId = sReleaseTimeId, Value = req.releaseTime });
+                
             }
 
             if(req.style!= null)
@@ -233,8 +251,9 @@ namespace StreamTrace.Repository
                 {
                     sStyleId = checkStyle.Id;
                 }
-                _context.ContentDetail.Add(new ContentDetail() { ContentId = content.Id, SpectificationId = sStyleId, Value = req.style });
-               
+ 
+                    _context.ContentDetail.Add(new ContentDetail() { ContentId = content.Id, SpectificationId = sStyleId, Value = req.style });
+
             }
             if (req.singer != null) 
             {
@@ -247,7 +266,8 @@ namespace StreamTrace.Repository
                     _context.Spectification.Add(sSinger);
                     _context.SaveChanges();
                     sSingerId = sSinger.Id;
-                }else
+                }
+                else
                 {
                     sSingerId = checkSinger.Id;
                 }
@@ -293,5 +313,25 @@ namespace StreamTrace.Repository
                         select c;
             return await query.ToListAsync();
         }
+
+        //public async Task<List<ContentDetailDTO>> GetContentByGeneral(string general, string value)
+        //{
+        //    List<ContentDetailDTO> listRS = new List<ContentDetailDTO>();
+        //    //var contents = await _context.Content.Where(r => r.Type.Equals(type)).ToListAsync();
+
+        //    var query = await (from cd in _context.ContentDetail
+        //                      join s in _context.Spectification on cd.SpectificationId equals s.Id
+        //                      where s.Name.Equals()
+        //                      group cd by new { cd.ContentId, cd.SpectificationId, s.Name } into grouped
+        //                      select new ContentSpectification
+        //                      {
+        //                          ContentId = grouped.Key.ContentId,
+        //                          SpectificationId = grouped.Key.SpectificationId,
+        //                          SpectificationName = grouped.Key.Name,
+        //                          SpectificationValue = grouped.Select(r => r.Value).ToList()
+        //                      }).ToListAsync();
+
+        //    throw new NotImplementedException();
+        //}
     }
 }
