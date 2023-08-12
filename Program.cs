@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using StreamTrace.Data;
@@ -20,6 +21,18 @@ namespace StreamTrace
             builder.Services.AddDatabaseDeveloperPageExceptionFilter();
             builder.Services.AddIdentity<CustomUser, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = false)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
+            // Other service configurations...
+
+            builder.Services.AddAuthentication(options =>
+            {
+                options.DefaultChallengeScheme = "CustomRedirect";
+            })
+            .AddCookie("CustomRedirect", options =>
+            {
+                options.LoginPath = new PathString("/Identity/Account/Login"); // Replace with your custom login path
+                options.AccessDeniedPath = new PathString("/Identity/Account/Login"); // Replace with your custom access denied path
+                options.ExpireTimeSpan = TimeSpan.FromMinutes(30); // Optional: set the expiration time for the cookie
+            });
             builder.Services.AddScoped(typeof(IBaseRepository<>), typeof(BaseRepository<>));
             builder.Services.AddScoped<IContentRepository, ContentRepository>();
             builder.Services.AddScoped<IContentDetailRepository, ContentDetailRepository>();
