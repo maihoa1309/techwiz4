@@ -1,8 +1,19 @@
 ﻿@using StreamTrace.DTO;
 @model List<ContentDetailDTO>;
 @{
-    
-    var urlUpdate = Url.Action("AddOrUpdateContent");
+
+   
+    //switch(type){
+    //    case "tvshow":
+    //        urlUpdate = Url.Action("AddOrUpdateTVShow", "CMS");
+    //        break;
+    //    case "movie":
+    //        urlUpdate = Url.Action("AddOrUpdateMovie", "CMS");
+    //        break;
+    //    case "music":
+    //        urlUpdate = Url.Action("AddOrUpdateMusic", "CMS");
+    //        break;
+    //}
 }
 @if (Model != null)
 {
@@ -24,7 +35,6 @@
             @foreach (var item in Model)
             {
                 <tr>
-
                     <td>@item.content.Name</td>
                     <td>@item.content.ImgURL</td>
                     <td>@item.content.Manufacture</td>
@@ -41,7 +51,23 @@
                     </td>
                     <td>
                         <div class="d-grid gap-3 d-md-block">
-                            <a class="btn btn-warning" id="editButton" type="button" href="@urlUpdate" >Update</a>
+                            @{
+                                var urlUpdate = Url.Action("AddOrUpdateTVShow", "CMS");
+                                var type = ViewBag.Type as string;
+                                if (type.Equals("tvshow"))
+                                {
+                                    urlUpdate = Url.Action("AddOrUpdateTVShow", "CMS",new {id = item.content.Id});
+                                }
+                                if (type.Equals("movie"))
+                                {
+                                    urlUpdate = Url.Action("AddOrUpdateMovie", "CMS", new { id = item.content.Id });
+                                }
+                                if (type.Equals("music"))
+                                {
+                                    urlUpdate = Url.Action("AddOrUpdateMusic", "CMS", new { id = item.content.Id });
+                                }
+                            }
+                            <a class="btn btn-warning" id="editButton" type="button" href="@urlUpdate">Update</a>
                             <a class="btn btn-danger" id="deleteButton" type="button"href="@urlUpdate">Delete</a>
                         </div>
                     </td>
