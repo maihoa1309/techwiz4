@@ -16,6 +16,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 using StreamTrace.Models;
 
+
 namespace StreamTrace.Views.Auth
 {
     public class LoginModel : PageModel
@@ -116,9 +117,26 @@ namespace StreamTrace.Views.Auth
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User logged in.");
-                    return LocalRedirect(returnUrl);
+                    var user = await _signInManager.UserManager.FindByEmailAsync(Input.Email);
+                    if (await _signInManager.UserManager.IsInRoleAsync(user, "ADMIN"))
+                    {
+                        return RedirectToAction("Index","Admin");
+                    }
+                    else
+                    {
+                        return RedirectToAction("Index","");
+                    }
+                    //return LocalRedirect(returnUrl);
                 }
-                if (result.RequiresTwoFactor)
+                //
+                if (result.Succeeded)
+                {
+                    _logger.LogInformation("User logged in.");
+
+                    // Kiểm tra vai trò của người dùng và chuyển hướng tương ứng
+                   
+                }
+                    if (result.RequiresTwoFactor)
                 {
                     return RedirectToPage("./LoginWith2fa", new { ReturnUrl = returnUrl, Input.RememberMe });
                 }
