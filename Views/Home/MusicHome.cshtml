@@ -11,6 +11,7 @@
     var allMusic = await contentRepository.FilterAsync(null, r => r.Type.Equals("music"), "Id", false, 1, 100);
     var topTvshow = await contentRepository.GetContentHighestViewCount("tvshows");
     var topMovie = await contentRepository.GetContentHighestViewCount("movie");
+    var getDetailMusics = await contentRepository.GetContentByType("movie");
 }
 
 
@@ -19,180 +20,10 @@
     <section class="pt-0 pb-0">
         <div class="container-fluid px-0">
             <div class="row no-gutters">
-                <div class="col-12">
-                    <div class="gen-banner-movies">
-                        <div class="owl-carousel owl-loaded owl-drag" data-dots="false" data-nav="true"
-                             data-desk_num="1" data-lap_num="1" data-tab_num="1" data-mob_num="1" data-mob_sm="1"
-                             data-autoplay="true" data-loop="true" data-margin="30">
-                            <div class="item" style="background: url('images/background/asset-9.jpg')">
-                                <div class="gen-movie-contain h-100">
-                                    <div class="container h-100">
-                                        <div class="row align-items-center h-100">
-                                            <div class="col-xl-6">
-                                                <div class="gen-tag-line"><span></span></div>
-                                                <div class="gen-movie-info">
-                                                    <h3>Rebuneka the doll</h3>
-                                                </div>
-                                                <div class="gen-movie-meta-holder">
-                                                    <ul>
-                                                        <li class="gen-sen-rating">
-                                                            <span>
-                                                                R
-                                                            </span>
-                                                        </li>
-                                                        <li>1hr 44 mins</li>
-                                                        <li>
-                                                            <img src="images/asset-2.png" alt="streamlab-image">
-                                                            <span>
-                                                                0
-                                                            </span>
-                                                        </li>
-                                                        <li>
-                                                            2018
-                                                        </li>
-                                                        <li>
-                                                            <a href="action.html"><span>Action</span></a>
-                                                        </li>
-                                                    </ul>
-                                                    <p>
-                                                        Streamlab is a long established fact that a reader will be
-                                                        distracted by the readable content of a page when Streamlab at
-                                                        its layout. The point of using Lorem Streamlab is that it has a
-                                                        more-or-less normal distribution of Streamlab as opposed
-                                                        Streamlab.
-                                                    </p>
-                                                </div>
-                                                <div class="gen-movie-action">
-                                                    <div class="gen-btn-container button-1">
-                                                        <a href="single-movie.html" class="gen-button">
-                                                            <span class="text">Play Now</span>
-                                                        </a>
-                                                    </div>
-                                                    <div class="gen-btn-container button-2">
-                                                        <a href="https://www.youtube.com/watch?v=LXb3EKWsInQ"
-                                                           class="gen-button popup-youtube popup-vimeo popup-gmaps gen-button-link">
-                                                            <i aria-hidden="true" class="ion ion-play"></i> <span class="text">Watch Trailer</span>
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="item" style="background: url('images/background/asset-52.jpg')">
-                                <div class="gen-movie-contain h-100">
-                                    <div class="container h-100">
-                                        <div class="row align-items-center h-100">
-                                            <div class="col-xl-6">
-                                                <div class="gen-tag-line"><span></span></div>
-                                                <div class="gen-movie-info">
-                                                    <h3>the darkest nightplace</h3>
-                                                </div>
-                                                <div class="gen-movie-meta-holder">
-                                                    <ul>
-                                                        <li class="gen-sen-rating">
-                                                            <span>
-                                                                R
-                                                            </span>
-                                                        </li>
-                                                        <li>1hr 46mins</li>
-                                                        <li>
-                                                            <img src="images/asset-2.png" alt="streamlab-image">
-                                                            <span>
-                                                                0
-                                                            </span>
-                                                        </li>
-                                                        <li>
-                                                            2017
-                                                        </li>
-                                                        <li>
-                                                            <a href="action.html"><span>Action</span></a>
-                                                        </li>
-                                                    </ul>
-                                                    <p>
-                                                        Streamlab is a long established fact that a reader will be
-                                                        distracted by the readable content of a page when Streamlab at
-                                                        its layout. The point of using Lorem Streamlab is that it has a
-                                                        more-or-less normal distribution of Streamlab as opposed
-                                                        Streamlab.
-                                                    </p>
-                                                </div>
-                                                <div class="gen-movie-action">
-                                                    <div class="gen-btn-container button-1">
-                                                        <a href="single-movie.html" class="gen-button">
-                                                            <span class="text">Play Now</span>
-                                                        </a>
-                                                    </div>
-                                                    <div class="gen-btn-container button-2">
-                                                        <a href="https://www.youtube.com/watch?v=LXb3EKWsInQ"
-                                                           class="gen-button popup-youtube popup-vimeo popup-gmaps gen-button-link">
-                                                            <i aria-hidden="true" class="ion ion-play"></i> <span class="text">Watch Trailer</span>
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="item" style="background: url('images/background/asset-24.jpg')">
-                                <div class="gen-movie-contain h-100">
-                                    <div class="container h-100">
-                                        <div class="row align-items-center h-100">
-                                            <div class="col-xl-6">
-                                                <div class="gen-tag-line"><span></span></div>
-                                                <div class="gen-movie-info">
-                                                    <h3>The Last Witness</h3>
-                                                </div>
-                                                <div class="gen-movie-meta-holder">
-                                                    <ul>
-                                                        <li class="gen-sen-rating">
-                                                            <span>
-                                                                GP
-                                                            </span>
-                                                        </li>
-                                                        <li>1hr 37 mins</li>
-                                                        <li>
-                                                            <img src="images/asset-2.png" alt="streamlab-image">
-                                                            <span>
-                                                                0
-                                                            </span>
-                                                        </li>
-                                                        <li>
-                                                            2018
-                                                        </li>
-                                                        <li>
-                                                            <a href="action.html"><span>Action</span></a>
-                                                        </li>
-                                                    </ul>
-                                                    <p>
-                                                        Streamlab is a long established fact that a reader will be
-                                                        distracted by the readable content of a page when Streamlab at
-                                                        its layout Streamlab.
-                                                    </p>
-                                                </div>
-                                                <div class="gen-movie-action">
-                                                    <div class="gen-btn-container button-1">
-                                                        <a href="single-movie.html" class="gen-button">
-                                                            <span class="text">Play Now</span>
-                                                        </a>
-                                                    </div>
-                                                    <div class="gen-btn-container button-2">
-                                                        <a href="https://www.youtube.com/watch?v=LXb3EKWsInQ"
-                                                           class="gen-button popup-youtube popup-vimeo popup-gmaps gen-button-link">
-                                                            <i aria-hidden="true" class="ion ion-play"></i> <span class="text">Watch Trailer</span>
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            @for(int i = 0; i < 1; i++)
+            {
+                @await Component.InvokeAsync("Content2", new { item = getDetailMusics[i] })
+            }
             </div>
         </div>
     </section>
@@ -236,7 +67,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-xl-6 col-lg-6 col-md-6">
-                    <h4 class="gen-heading-title">Most Viewed</h4>
+                    <h4 class="gen-heading-title">Top Viewed</h4>
                 </div>
                 <div class="col-xl-6 col-lg-6 col-md-6 d-none d-md-inline-block">
                     <div class="gen-movie-action">
@@ -254,7 +85,7 @@
                         <div class="owl-carousel owl-loaded owl-drag" data-dots="false" data-nav="true"
                              data-desk_num="4" data-lap_num="3" data-tab_num="2" data-mob_num="1" data-mob_sm="1"
                              data-autoplay="false" data-loop="false" data-margin="30">
-                        @foreach (var content in topTvshow)
+                        @foreach (var content in topMusic)
                         {
                             @await Component.InvokeAsync("ContentItem", new { item = content })
                         }
