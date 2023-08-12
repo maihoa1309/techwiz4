@@ -1,6 +1,4 @@
-﻿
-
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 
 <html>
 <head>
@@ -43,20 +41,20 @@
                                     <ul id="gen-main-menu" class="navbar-nav ml-auto">
 
                                         <li class="menu-item active">
-                                            <a href="/" aria-current="page">Home</a>
+                                            <a href="home/Index" aria-current="page">Home</a>
                                             <i class="fa fa-chevron-down gen-submenu-icon"></i>
                                             <ul class="sub-menu">
                                                 <li class="menu-item active">
-                                                    <a href="/" aria-current="page">Main Home</a>
+                                                    <a href="Home/Index" aria-current="page">Main Home</a>
                                                 </li>
                                                 <li class="menu-item">
-                                                    <a href="/home/movieshome" aria-current="page">Movies Home</a>
+                                                    <a href="home/movieshome" aria-current="page">Movies Home</a>
                                                 </li>
                                                 <li class="menu-item">
-                                                    <a href="/home/tvshowshome" aria-current="page">Tv Shows Home</a>
+                                                    <a href="home/tvshowshome" aria-current="page">Tv Shows Home</a>
                                                 </li>
                                                 <li class="menu-item">
-                                                    <a href="/home/Musichome" aria-current="page">Musics Home</a>
+                                                    <a href="home/Musichome" aria-current="page">Musics Home</a>
                                                 </li>
                                             </ul>
                                         </li>
@@ -65,13 +63,13 @@
                                             <i class="fa fa-chevron-down gen-submenu-icon"></i>
                                             <ul class="sub-menu">
                                                 <li class="menu-item active">
-                                                    <a href="/home/movieshome" aria-current="page">Movies Home</a>
+                                                    <a href="home/movieshome" aria-current="page">Movies Home</a>
                                                 </li>
                                                 <li class="menu-item active">
-                                                    <a href="/home/moviesAll" aria-current="page">Movies List</a>
+                                                    <a href="home/moviesAll" aria-current="page">Movies List</a>
                                                 </li>
                                                 <li class="menu-item">
-                                                    <a href="/home/Genre" aria-current="page">Movies Genre</a>
+                                                    <a href="home/Genre" aria-current="page">Movies Genre</a>
                                                 </li>
 
                                             </ul>
@@ -81,14 +79,24 @@
                                             <i class="fa fa-chevron-down gen-submenu-icon"></i>
                                             <ul class="sub-menu">
                                                 <li class="menu-item menu-item-has-children">
-                                                    <a href="/home/TvshowsHome" aria-current="page">TV Shows Home</a>
+                                                    <a href="home/TvshowsHome" aria-current="page">TV Shows Home</a>
                                                 </li>
                                                 <li class="menu-item menu-item-has-children">
-                                                    <a href="/home/TvshowsAll" aria-current="page">TV Shows List</a>
-                                                    
-                                                    
+                                                    <a href="TvshowsAll" aria-current="page">TV Shows List</a>
+                                                    <i class="fa fa-chevron-down gen-submenu-icon"></i>
+                                                    <ul class="sub-menu">
+                                                        <li class="menu-item">
+                                                            <a href="home/TvshowStyle">TV Show 1</a>
+                                                        </li>
+                                                        <li class="menu-item">
+                                                            <a href="home/TvshowStyle">TV Show 2</a>
+                                                        </li>
+                                                        <li class="menu-item">
+                                                            <a href="home/TvshowStyle">TV Show 3</a>
+                                                        </li>
+                                                    </ul>
                                                 </li>
-                                                
+
                                             </ul>
                                         </li>
                                         <li class="menu-item">
@@ -96,32 +104,32 @@
                                             <i class="fa fa-chevron-down gen-submenu-icon"></i>
                                             <ul class="sub-menu">
                                                 <li class="menu-item menu-item-has-children">
-                                                    <a href="/home/MusicHome">Musics Home</a>
+                                                    <a href="home/MusicHome">Musics Home</a>
                                                 </li>
                                                 <li class="menu-item menu-item-has-children">
-                                                    <a href="/home/SingerList">Singer List</a>           
+                                                    <a href="home/SingerList">Singer List</a>
                                                 </li>
                                                 <li class="menu-item menu-item-has-children">
-                                                    <a href="/home/MusicsAll">Musics List</a>                                                
-                                                 </li>                                            
+                                                    <a href="home/MusicsAll">Musics List</a>
+                                                </li>
                                             </ul>
 
-                                        
+
 
                                         <li class="menu-item" style="padding-right: 15px">
                                             <a href="#">Pages</a>
-                                            @*<i class="fa fa-chevron-down gen-submenu-icon"></i>*@
+                                                @*<i class="fa fa-chevron-down gen-submenu-icon"></i>*@
                                             <ul class="sub-menu">
                                                 <li class="menu-item menu-item-has-children">
 
-                                                    <a href="/home/Pricing">Pricing</a>   
+                                                    <a href="home/Pricing">Pricing</a>
 
                                                 </li>
-                                                
+
                                                 <li class="menu-item">
-                                                    <a href="/home/ContactUs">Contact Us</a>
+                                                    <a href="home/ContactUs">Contact Us</a>
                                                 </li>
-                                            
+
                                             </ul>
                                         </li>
 
@@ -132,7 +140,7 @@
                                 <div class="gen-menu-search-block">
                                     <a href="javascript:void(0)" id="gen-seacrh-btn"><i class="fa fa-search"></i></a>
                                     <div class="gen-search-form">
-                                        <form role="search" method="get" class="search-form" action="/home/Search">
+                                        <form role="search" method="get" class="search-form" action="home/Search">
                                             <label>
                                                 <span class="screen-reader-text"></span>
                                                 <input type="search" class="search-field" placeholder="Search …"
@@ -145,55 +153,32 @@
                                     </div>
                                 </div>
                             </div>
-                                <div class="gen-account-holder">
-                                    <a href="javascript:void(0)" id="gen-user-btn"><i class="fa fa-user"></i></a>
-                                    <div class="gen-account-menu">
-                                        <ul class="gen-account-menu">
-                                            <li><partial name="_LoginPartial" /></li>
-                                            <!-- Pms Menu -->
-                                            @*<li>
-                                                <a href="log-in.html">
-                                                    <i class="fas fa-sign-in-alt"></i>
-                                                    login
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="register.html">
-                                                    <i class="fa fa-user"></i>
-                                                    Register
-                                                </a>
-                                            </li>*@
-                                            
-                                            <!-- Library Menu -->
-                                            <li>
-                                                <a href="library.html">
-                                                    <i class="fa fa-list"></i>
-                                                    Movies List
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="library.html">
-                                                    <i class="fa fa-list"></i>
-                                                    Tv Shows List
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="library.html">
-                                                    <i class="fa fa-list"></i>
-                                                    Musics List
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            <div class="gen-account-menu">
-                                <ul class="gen-account-menu">
-                                    <li><partial name="_LoginPartial" /></li>
+                            <div class="gen-account-holder">
+                                <a href="javascript:void(0)" id="gen-user-btn"><i class="fa fa-user"></i></a>
+                                <div class="gen-account-menu">
+                                    <ul class="gen-account-menu">
+                                        <li>
+                                            <a href="library.html">
+                                                <i class="fa fa-list"></i>
+                                                Movies List
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="library.html">
+                                                <i class="fa fa-list"></i>
+                                                Tv Shows List
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="library.html">
+                                                <i class="fa fa-list"></i>
+                                                Musics List
+                                            </a>
+                                        </li>
                                     </ul>
-                                    </div>
                                 </div>
                             </div>
-                            
+                            <partial name="_LoginPartial" />
                         </nav>
                     </div>
                 </div>
@@ -243,10 +228,11 @@
                                 <div class="menu-explore-container">
                                     <ul class="menu">
                                         <li class="menu-item">
-                                            <a href="/" aria-current="page">Home</a>
+                                            <a href="#" aria-current="page">Home</a>
                                         </li>
-                                        <li class="menu-item"><a href="/home/movies">Movies</a></li>
-                                        <li class="menu-item"><a href="/home/tvshowshome">Tv Shows</a></li>
+                                        <li class="menu-item"><a href="#">Movies</a></li>
+                                        <li class="menu-item"><a href="#">Tv Shows</a></li>
+                                        <li class="menu-item"><a href="#">Videos</a></li>
                                         <li class="menu-item"><a href="#">Actors</a></li>
                                         <li class="menu-item"><a href="#">Basketball</a></li>
                                         <li class="menu-item"><a href="#">Celebrity</a></li>
@@ -264,7 +250,7 @@
                                             <a href="#">Company</a>
                                         </li>
                                         <li class="menu-item">
-                                            <a href="/home/ContactUs">
+                                            <a href="./ContactUs">
                                                 Privacy
                                                 Policy
                                             </a>
@@ -346,7 +332,4 @@
 
     <script src="@Url.Content("~/js/script.js")"></script>
 </body>
-
-
-
 </html>
