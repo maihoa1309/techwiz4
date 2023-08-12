@@ -18,70 +18,78 @@ namespace StreamTrace.Repository
         Task<bool> CheckStatus(int  id);
         Task<bool> InsertOrUpdateContent(FormInserOrUpdateContent req, string type, int id);
         Task<List<ContentDetailDTO>> GetContentByType(string type);
+        Task<bool> CheckUserSubscibleAsync(int contentId);
         //public async Task<List<Content>> GetContent();
-      
 
-        //Task<List<ContentDetailDTO>> GetContentByGeneral(string general, string value);
+
+        Task<List<Content>> GetContentByGeneral(string value);
     }
     public class ContentRepository : BaseRepository<Content>, IContentRepository
     {
         public ContentRepository(ApplicationDbContext dbContext, UserManager<CustomUser> userManager, IHttpContextAccessor httpContext) : base(dbContext, userManager, httpContext) { }
-        //public async Task<List<Content>> GetContent()
-        //{
-        //    var query = from DbContext.contentDetail in _
-        //                where contentDetail.SpectificationId == 11
-        //                join content in _context. on contentDetail.ContentId equals content.Id
-        //                select new
-        //                {
-        //                    contentDetail.Id,
-        //                    contentDetail.ContentId,
-        //                    contentDetail.Value,
-        //                    content.Id,
-        //                    content.Name
-        //                };
+        
 
-        //    var result = query.ToList();
-        //    return result;
-        //}
 
+        public async Task<bool> CheckUserSubscibleAsync(int contentId)
+        {
+            //Kiem tra neu noi dung la free thi tra ve true luon
+            var contentAffected = await _context.Content.FindAsync(contentId);
+            if (contentAffected != null)
+            {
+                if(contentAffected.Status == 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    var currentUser = await _userManager.GetUserAsync(_contextAccessor.HttpContext.User);
+                    if (currentUser != null)
+                    {
+                        var currentUserId = currentUser.Id;
+                        //Kiem tra trang thai cua user voi service tuong ung
+                        var checker = from us in _context.UserSub.AsQueryable()
+                                      join sp in _context.Subsription.AsQueryable() on us.SubscriptionId equals sp.Id
+                                      join s in _context.Service.AsQueryable() on sp.ServiceId equals s.Id
+                                      where us.UserId == currentUserId && s.Id == contentAffected.ServiceId && us.DueDate >= DateTime.Now
+                                      select us;
+                        if(checker.Any())
+                        {
+                            return true;
+                        }
+                        else
+                        {
+                            return false;
+                        }
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+            }
+            return false;
+        }
         public async Task<bool> CheckStatus(int id)
         {
             bool flag = false;
             var currentUser = _userManager.GetUserAsync(_contextAccessor.HttpContext.User).GetAwaiter().GetResult();
-            //if (currentUser != null)
-            //{
-            //    var userId = currentUser.Id;
-            //    var checkContentStatus = from c in _context.Content
-            //                             where c.Name.ToLower().Contains(name.ToLower())
-            //                             select c.Status;
 
-            //    if (checkContentStatus.FirstOrDefault() == 1)
-            //    {
-            //        var checkUserSub = from u in _context.Users.AsQueryable()
-            //                           join us in _context.UserSub.AsQueryable() on u.Id equals us.UserId
-            //                           join sb in _context.Subsription.AsQueryable() on us.SubscriptionId equals sb.Id
-            //                           where u.Id.Equals(userId) && us.DueDate >= DateTime.Now
-            //                           select sb;
-            //        if (checkUserSub != null)
-            //        {
-            //            flag = true;
-            //        }
-            //        flag = false;
-            //    }
-            //    flag = true;
-            //}
+            var statusContent = from c in _context.Content
+                                where c.Id == id
+                                select c.Status;
+            if (statusContent.FirstOrDefault() == 0)
+            {
+                flag = true;
+            }
+            else
+            {
+                var checkSub = (from s in _context.Service
+                                join c in _context.Content on s.Id equals c.ServiceId
+                                join sb in _context.Subsription on s.Id equals sb.ServiceId
+                                where c.Id == id
+                                select sb.Subcription_type).FirstOrDefault();
 
-            //var statusContent = from c in _context.Content
-            //                    where c.Id == id
-            //                    select c.Status;
-            //if (statusContent.FirstOrDefault() == 0)
-            //{
-            //    flag = true;
-            //}
-            //else
-            //{
-            
-            //}
+            }
 
             return flag;
         }
@@ -360,24 +368,16 @@ namespace StreamTrace.Repository
             return await query.ToListAsync();
         }
 
-        public async Task<List<ContentDetailDTO>> GetContentByGeneral(string general, string value)
+        public async Task<List<Content>> GetContentByGeneral( string value)
         {
-            //List<ContentDetailDTO> listRS = new List<ContentDetailDTO>();
-            ////var contents = await _context.Content.Where(r => r.Type.Equals(type)).ToListAsync();
+            List<Content> listRS = new List<Content>();
+            listRS = await (from cd in _context.ContentDetail
+                                     join c in _context.Content on cd.ContentId equals c.Id
+                                     join sp in _context.Spectification on cd.SpectificationId equals sp.Id
+                                     where cd.SpectificationId == 11 && cd.Value.Equals(value)
+                                     select c).ToListAsync();
 
-            //var query = await (from cd in _context.ContentDetail
-            //                  join s in _context.Spectification on cd.SpectificationId equals s.Id
-            //                  //where s.Name.Equals()
-            //                  group cd by new { cd.ContentId, cd.SpectificationId, s.Name } into grouped
-            //                  select new ContentSpectification
-            //                  {
-            //                      ContentId = grouped.Key.ContentId,
-            //                      SpectificationId = grouped.Key.SpectificationId,
-            //                      SpectificationName = grouped.Key.Name,
-            //                      SpectificationValue = grouped.Select(r => r.Value).ToList()
-            //                  }).ToListAsync();
-
-            throw new NotImplementedException();
+            return listRS;
         }
     }
 }

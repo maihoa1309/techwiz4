@@ -48,9 +48,9 @@ namespace StreamTrace.Repository
                     case (int)SubscriptionType.nine_months:
                         newUserSub.DueDate = userSub.DueDate.Value.AddMonths(9);
                         break;
-                    case (int)SubscriptionType.a_year:
-                        newUserSub.DueDate = userSub.DueDate.Value.AddYears(1);
-                        break;
+                    //case (int)SubscriptionType.a_year:
+                    //    newUserSub.DueDate = userSub.DueDate.Value.AddYears(1);
+                    //    break;
                 }
             }
             await _context.UserSub.AddAsync(newUserSub);
