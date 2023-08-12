@@ -1,25 +1,33 @@
-﻿@using StreamTrace.Repository;
-@inject IContentRepository contentRepository;
-@{
-    var allMovies = await contentRepository.FilterAsync(null, r => r.Type.Equals("movie"), "Id", false, 1, 10);
+﻿@{
+    ViewData["Title"] = "Home Page";
+
 }
 
-    <!-- breadcrumb -->
-<div class="gen-breadcrumb" style="background-image: url(/images/background/asset-25.jpg);">
+@using StreamTrace.Repository;
+@using StreamTrace.DTO;
+@inject IContentRepository contentRepository;
+@{
+    var allMusic = await contentRepository.FilterAsync(null, r => r.Type.Equals("music"), "Id", false, 1, 100);
+
+}
+    <div class="gen-breadcrumb" style="background-image: url('../images/background/asset-25.jpg');">
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-lg-12">
                     <nav aria-label="breadcrumb">
                         <div class="gen-breadcrumb-title">
                             <h1>
-                                Movies
+                                Musics
                             </h1>
                         </div>
                         <div class="gen-breadcrumb-container">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="index.html"><i
-                                            class="fas fa-home mr-2"></i>Home</a></li>
-                                <li class="breadcrumb-item active">Movie</li>
+                                <li class="breadcrumb-item">
+                                    <a href="./Index">
+                                        <i class="fas fa-home mr-2"></i>Home
+                                    </a>
+                                </li>
+                                <li class="breadcrumb-item active">Musics</li>
                             </ol>
                         </div>
                     </nav>
@@ -28,12 +36,6 @@
         </div>
     </div>
     <!-- breadcrumb -->
-    <div class="input-group rounded container p-5">
-        <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
-        <span class="input-group-text border-0 " id="search-addon">
-            <i class="fas fa-search"></i>
-        </span>
-    </div>
     <!-- Section-1 Start -->
     <section class="gen-section-padding-3">
         <div class="container">
@@ -41,12 +43,11 @@
                 <div class="col-lg-12">
                     <div class="row">
 
-                    @foreach (var content in allMovies)
+                    @foreach (var content in allMusic)
                     {
-
-                        @await Component.InvokeAsync("ContentItem", new { item = content })
-                        ;
-
+                        <div class="col-xl-3 col-lg-4 col-md-6">
+                            @await Component.InvokeAsync("ContentItem", new { item = content })
+                        </div>
 
                     }
                         
@@ -57,8 +58,9 @@
                         <div class="gen-btn-container">
                             <a class="gen-button gen-button-loadmore" href="#">
                                 <span class="button-text">Load More</span>
-                                <span class="loadmore-icon" style="display: none;"><i
-                                        class="fa fa-spinner fa-spin"></i></span>
+                                <span class="loadmore-icon" style="display: none;">
+                                    <i class="fa fa-spinner fa-spin"></i>
+                                </span>
                             </a>
                         </div>
                     </div>
@@ -67,10 +69,5 @@
         </div>
     </section>
     <!-- Section-1 End -->
-
-    <!-- Back-to-Top start -->
-    <div id="back-to-top">
-        <a class="top" id="top" href="#top"> <i class="ion-ios-arrow-up"></i> </a>
-    </div>
-    <!-- Back-to-Top end -->
-
+    <!-- footer start -->
+    

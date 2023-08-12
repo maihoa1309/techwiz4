@@ -66,6 +66,12 @@
                                 <i class="fa fa-play"></i>
                             </a>
                         }
+                        @if(Model.Type.Equals("music"))
+                        {
+                            <a href="@Url.Action("MusicDetail",new {id = Model.Id})" class="gen-button">
+                                <i class="fa fa-play"></i>
+                            </a>
+                        }
 
 
                     </div>
