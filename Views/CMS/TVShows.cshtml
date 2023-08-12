@@ -42,12 +42,10 @@
     halo
     <div class="container mt-5">
         <div class="row justify-content-center">
-            <div class="col-md-12 table-container">
-               <div class="row">
-                    <h2>TVShows List</h2>
-                    <div class="d-grid gap-2 d-md-block mb-3">
-                        <button class="btn btn-success" id="addButton" type="button" style="float: right;">Add New</button>
-                    </div>
+            <div class="col-md-10 table-container">
+                <h2>TV Show List</h2>
+                <div class="d-grid gap-2 d-md-block mb-3">
+                    <button class="btn btn-success" id="addButton" type="button">Add New</button>
                 </div>
                 @await Component.InvokeAsync("showDataAdmin", new { item = contents, type = "tvshow"})
             </div>

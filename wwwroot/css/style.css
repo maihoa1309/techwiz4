@@ -7,7 +7,40 @@ Design and Developed by: Gentechtree
 NOTE: This is main stylesheet of template, This file contains the styling for the actual Template. Please do not change anything here! write in a custom.css file if required!
 */
 
+<style >
+.name {
+    width: 10%;
+}
 
+.avatar {
+    width: 10%;
+}
+
+.manufacture {
+    width: 10%;
+}
+
+.trailer {
+    width: 10%;
+}
+
+.fullvideo {
+    width: 10%;
+}
+
+.status {
+    width: 10%;
+}
+
+.detail {
+    width: 10%;
+}
+
+.action {
+    width: 10%;
+}
+
+</style >
 /*================================================
 [  Table of contents  ]
 ================================================
@@ -45,23 +78,19 @@ NOTE: This is main stylesheet of template, This file contains the styling for th
 ==> Play Button
 ==> Icon-Box
 ================================================*/
-
 /*=============================================
 Fonts
 ==============================================*/
 @import url(https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700;800&amp;family=Roboto:wght@300;400;500;700&amp;display=swap);
-
 /*==============================================
 Import css
 ===============================================*/
-
 @import url(all.min.css);
 @import url(fontawesome.min.css);
 @import url(ionicons.min.css);
 @import url(slick.min.css);
 @import url(owl.carousel.min.css);
 @import url(magnific-popup.min.css);
-
 /*================================================
 Moz Selection
 ================================================*/
