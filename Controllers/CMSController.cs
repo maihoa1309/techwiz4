@@ -63,9 +63,9 @@ namespace StreamTrace.Controllers
         {
             return View();
         }
-        public IActionResult AddOrUpdateMusic()
+        public IActionResult AddOrUpdateMusic(int id=0 )
         {
-            return View();
+            return View(id);
         }
         public IActionResult AddOrUpdateUser()
         {

@@ -18,13 +18,31 @@ namespace StreamTrace.Repository
         Task<bool> CheckStatus(string name);
         Task<bool> InsertOrUpdateContent(FormInserOrUpdateContent req, string type, int id);
         Task<List<ContentDetailDTO>> GetContentByType(string type);
+        //public async Task<List<Content>> GetContent();
+      
 
         //Task<List<ContentDetailDTO>> GetContentByGeneral(string general, string value);
     }
     public class ContentRepository : BaseRepository<Content>, IContentRepository
     {
         public ContentRepository(ApplicationDbContext dbContext, UserManager<CustomUser> userManager, IHttpContextAccessor httpContext) : base(dbContext, userManager, httpContext) { }
+        //public async Task<List<Content>> GetContent()
+        //{
+        //    var query = from DbContext.contentDetail in _
+        //                where contentDetail.SpectificationId == 11
+        //                join content in _context. on contentDetail.ContentId equals content.Id
+        //                select new
+        //                {
+        //                    contentDetail.Id,
+        //                    contentDetail.ContentId,
+        //                    contentDetail.Value,
+        //                    content.Id,
+        //                    content.Name
+        //                };
 
+        //    var result = query.ToList();
+        //    return result;
+        //}
 
         public async Task<bool> CheckStatus(string name)
         {
