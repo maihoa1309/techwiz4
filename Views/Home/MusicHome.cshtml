@@ -1,0 +1,156 @@
+﻿@using StreamTrace.Repository;
+@inject IContentRepository contentRepository;
+@{
+    ViewData["Title"] = "MusicHome";
+    Layout = "~/Views/Shared/_LayoutWEB.cshtml";
+    var content1 = await contentRepository.GetFullDetail(17);
+    var content2 = await contentRepository.GetFullDetail(18);
+    var content3 = await contentRepository.GetFullDetail(19);
+    var content4 = await contentRepository.GetFullDetail(20);
+    var topMusic = await contentRepository.GetContentHighestViewCount("music");
+    var allMusic = await contentRepository.FilterAsync(null, r => r.Type.Equals("music"), "Id", false, 1, 100);
+    var topTvshow = await contentRepository.GetContentHighestViewCount("tvshows");
+    var topMovie = await contentRepository.GetContentHighestViewCount("movie");
+    var getDetailMusics = await contentRepository.GetContentByType("movie");
+}
+
+
+
+    <!-- owl-carousel Banner Start -->
+    <section class="pt-0 pb-0">
+        <div class="container-fluid px-0">
+            <div class="row no-gutters">
+            @for(int i = 0; i < 1; i++)
+            {
+                @await Component.InvokeAsync("Content2", new { item = getDetailMusics[i] })
+            }
+            </div>
+        </div>
+    </section>
+    <!-- owl-carousel Banner End -->
+    <!-- owl-carousel Videos Section-1 Start -->
+    <section class="gen-section-padding-2">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-6 col-lg-6 col-md-6">
+                    <h4 class="gen-heading-title">Most Popular</h4>
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-6 d-none d-md-inline-block">
+                    <div class="gen-movie-action">
+                        <div class="gen-btn-container text-right">
+                            <a href="tv-shows-pagination.html" class="gen-button gen-button-flat">
+                                <span class="text">More Videos</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-12">
+                    <div class="gen-style-2">
+                        <div class="owl-carousel owl-loaded owl-drag" data-dots="false" data-nav="true"
+                             data-desk_num="4" data-lap_num="3" data-tab_num="2" data-mob_num="1" data-mob_sm="1"
+                             data-autoplay="false" data-loop="false" data-margin="30">
+                        @foreach (var content in allMusic)
+                        {
+                            @await Component.InvokeAsync("ContentItem", new { item = content })
+
+                        }
+                           
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- owl-carousel Videos Section-1 End -->
+    <!-- owl-carousel Videos Section-2 Start -->
+    <section class="pt-0 gen-section-padding-2">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-6 col-lg-6 col-md-6">
+                    <h4 class="gen-heading-title">Top Viewed</h4>
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-6 d-none d-md-inline-block">
+                    <div class="gen-movie-action">
+                        <div class="gen-btn-container text-right">
+                            <a href="tv-shows-pagination.html" class="gen-button gen-button-flat">
+                                <span class="text">More Videos</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-12">
+                    <div class="gen-style-2">
+                        <div class="owl-carousel owl-loaded owl-drag" data-dots="false" data-nav="true"
+                             data-desk_num="4" data-lap_num="3" data-tab_num="2" data-mob_num="1" data-mob_sm="1"
+                             data-autoplay="false" data-loop="false" data-margin="30">
+                        @foreach (var content in topMusic)
+                        {
+                            @await Component.InvokeAsync("ContentItem", new { item = content })
+                        }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- owl-carousel Videos Section-2 End -->
+    <!-- owl-carousel images Start -->
+    <section class="pt-0 pb-0 gen-section-padding-2 home-singal-silder">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="gen-banner-movies">
+                        <div class="owl-carousel owl-loaded owl-drag" data-dots="true" data-nav="false"
+                             data-desk_num="1" data-lap_num="1" data-tab_num="1" data-mob_num="1" data-mob_sm="1"
+                             data-autoplay="true" data-loop="true" data-margin="30">
+                            @foreach(var movie in topMovie)
+                            {
+                                @await Component.InvokeAsync("ContentItem", new { item =  movie })
+                                
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- owl-carousel images End -->
+    <!-- owl-carousel Videos Section-3 Start -->
+    <section class="gen-section-padding-2">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-6 col-lg-6 col-md-6">
+                    <h4 class="gen-heading-title">Powerful Crime Thrillers</h4>
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-6 d-none d-md-inline-block">
+                    <div class="gen-movie-action">
+                        <div class="gen-btn-container text-right">
+                            <a href="tv-shows-pagination.html" class="gen-button gen-button-flat">
+                                <span class="text">More Videos</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-12">
+                    <div class="gen-style-2">
+                        <div class="owl-carousel owl-loaded owl-drag" data-dots="false" data-nav="true"
+                             data-desk_num="4" data-lap_num="3" data-tab_num="2" data-mob_num="1" data-mob_sm="1"
+                             data-autoplay="false" data-loop="false" data-margin="30">
+                            @foreach (var content in topMusic)
+                        {
+                            @await Component.InvokeAsync("ContentItem", new { item = content })
+
+                        }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- owl-carousel Videos Section-3 End -->
+
+

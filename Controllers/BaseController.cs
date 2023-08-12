@@ -1,6 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using StreamTrace.Models;
 using StreamTrace.Repository;
+using System.Data;
 
 namespace StreamTrace.Controllers
 {
@@ -19,7 +21,7 @@ namespace StreamTrace.Controllers
         {
             this.repository = repository;
         }
-
+        [Authorize(Roles = "ADMIN")]
         [HttpPost]
         public async Task<IActionResult> Create(T entity)
         {
