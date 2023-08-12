@@ -87,7 +87,7 @@ namespace StreamTrace.Repository
             int index = 1, 
             int size = 10)
         {
-            var dataRows = _dbSet.AsQueryable();
+            var dataRows = _dbSet.Where(r=>r.IsDeleted!=true).AsQueryable();
 
             if (includeProperty != null)
             {
@@ -127,7 +127,7 @@ namespace StreamTrace.Repository
 
         public async Task<List<T>> GetAllAsync()
         {
-            var result = await _dbSet.ToListAsync();
+            var result = await _dbSet.Where(r => r.IsDeleted!=null).ToListAsync();
             return result;
         }
 

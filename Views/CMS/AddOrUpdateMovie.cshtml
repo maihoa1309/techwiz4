@@ -1,4 +1,4 @@
-﻿@model int
+﻿                                                @model int
 @using StreamTrace.Repository
 @using StreamTrace.DTO
 @inject IContentRepository contentRepository
@@ -6,11 +6,11 @@
     ViewData["Title"] = "AddOrUpdateMovie";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
     var fullData = new ContentDetailDTO();
-    var urlAction = "/Content/CreateMovie";
+
     if(Model > 0)
     {
         fullData = await contentRepository.GetFullDetail(Model);
-        urlAction = string.Format("/Content/UpdateMovie/{0}", Model);
+   
     }
     
     
@@ -38,30 +38,65 @@
                 @if(fullData != null)
                 {
                     var releaseDate = fullData.contentSpectifications.FirstOrDefault(r => r.SpectificationName.Equals("Release Time"));
-                    <form id="movieForm" method="POST" action=@urlAction>
+                    var name = @fullData.content.Name;
+                    var descriptionSpec = fullData.contentSpectifications.FirstOrDefault(r => r.SpectificationName.Equals("Description"));
+                    var description = "";
+                    if(descriptionSpec != null)
+                    {
+                        description = string.Join(",", descriptionSpec.SpectificationValue ?? new List<string>());
+                    }
+                    var director = "";
+                    var directorSpec = fullData.contentSpectifications.FirstOrDefault(r => r.SpectificationName.Equals("Director"));
+                    if(directorSpec != null)
+                    {
+                        director = string.Join(",", directorSpec.SpectificationValue ?? new List<string>());
+                    }
+                    var actor = "";
+                    var actorSpec = fullData.contentSpectifications.FirstOrDefault(r => r.SpectificationName.Equals("Actor"));
+                    if (actorSpec != null)
+                    {
+                        actor = string.Join(",", actorSpec.SpectificationValue ?? new List<string>());
+                    }
+
+                    var runtime = "";
+                    var runtimeSpec = fullData.contentSpectifications.FirstOrDefault(r => r.SpectificationName.Equals("Runtime"));
+                    if (runtimeSpec != null)
+                    {
+                        runtime = string.Join(",", runtimeSpec.SpectificationValue);
+                        
+                    }
+
+                    var style = "";
+                    var styleSpec = fullData.contentSpectifications.FirstOrDefault(r => r.SpectificationName.Equals("General"));
+                    if (styleSpec != null)
+                    {
+                        style = string.Join(",", styleSpec.SpectificationValue);
+                    }
+
+
+                    <form id="movieForm" method="POST" action="/Content/CreateMovie">
+                        <input type="number" style="display:none;" name="id" value="@Model">
                         <div class="form-group">
                             <label for="name">Name:</label>
-                            <input type="text" class="form-control" id="name" name="name" value="@fullData.content.Name">
+                            <input type="text" class="form-control" id="name" name="name" value="@name">
                         </div>
                         <div class="form-group">
                             <label for="description">Description:</label>
-                            <textarea class="form-control" id="description" name="description">@string.Join(",",fullData.contentSpectifications.FirstOrDefault(r => r.SpectificationName.Equals("Description")).SpectificationValue)
-                            </textarea>
+                            <textarea class="form-control" id="description" name="description">@description</textarea>
                         </div>
                         <div class="form-group">
                             <label for="director">Director:</label>
-                            <input type="text" class="form-control" id="director" name="director"
-                               value="@string.Join(",",fullData.contentSpectifications.FirstOrDefault(r => r.SpectificationName.Equals("Director")).SpectificationValue)">
+                            <input type="text" class="form-control" id="director" name="director" value="@director">
                         </div>
                         <div class="form-group">
                             <label for="actor">Actor:</label>
                             <input type="text" class="form-control" id="actor" name="actor"
-                               value="@string.Join(",",fullData.contentSpectifications.FirstOrDefault(r => r.SpectificationName.Equals("Actor")).SpectificationValue)">
+                               value="@actor">
                         </div>
                         <div class="form-group">
                             <label for="runtime">Runtime:</label>
                             <input type="text" class="form-control" id="runtime" name="runtime"
-                               value="@string.Join(",",fullData.contentSpectifications.FirstOrDefault(r => r.SpectificationName.Equals("Runtime")).SpectificationValue)">
+                               value="@runtime">
                         </div>
                         <div class="form-group">
                             <label for="releaseTime">Release Time:</label>
@@ -86,7 +121,7 @@
                         <div class="form-group">
                             <label for="style">General:</label>
                             <input type="text" class="form-control" id="style" name="style"
-                               value="@string.Join(",",fullData.contentSpectifications.FirstOrDefault(r => r.SpectificationName.Equals("General")).SpectificationValue)">
+                               value="@style">
                         </div>
                         <button type="submit" class="btn btn-primary btn-block mt-3">Save</button>
                     </form>

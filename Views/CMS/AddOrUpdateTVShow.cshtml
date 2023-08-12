@@ -1,7 +1,17 @@
-﻿
+﻿@model int
+@using StreamTrace.Repository
+@using StreamTrace.DTO
+@inject IContentRepository contentRepository
 @{
     ViewData["Title"] = "AddOrUpdateTVShow";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    var fullData = new ContentDetailDTO();
+    if (Model > 0)
+    {
+        fullData = await contentRepository.GetFullDetail(Model);
+        
+    }
+
 }
 <head>
     <title>Add/Edit TV Show</title>
@@ -24,40 +34,74 @@
         <div class="row justify-content-center">
             <div class="col-md-12 form-container">
                 <h2 class="text-center">Add/Edit TV Show</h2>
-                <form id="contentForm">
-                    <div class="form-group">
-                        <label for="name">Name:</label>
-                        <input type="text" class="form-control" id="name" name="name">
-                    </div>
-                    <div class="form-group">
-                        <label for="description">Description:</label>
-                        <textarea class="form-control" id="description" name="description"></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label for="style">General:</label>
-                        <input type="text" class="form-control" id="style" name="style">
-                    </div>
-                    <div class="form-group">
-                        <label for="runtime">Runtime:</label>
-                        <input type="text" class="form-control" id="runtime" name="runtime">
-                    </div>
-                    <div class="form-group">
-                        <label for="releseStart">Release time:</label>
-                        <input type="date" class="form-control" id="releaseTime" name="releaseTime">
-                    </div>
-                    <div class="form-group">
-                        <label for="avatar">Avatar URL:</label>
-                        <input type="text" class="form-control" id="avatar" name="avatar">
-                    </div>
-                    <div class="form-group">
-                        <label for="fullvideo">Trailer URL:</label>
-                        <input type="text" class="form-control" id="fullvideo" name="fullvideo">
-                    </div>
-          
+                @if (fullData != null)
+                {
+                    var releaseDate = fullData.contentSpectifications.FirstOrDefault(r => r.SpectificationName.Equals("Release Time"));
+                    var name = @fullData.content.Name;
+                    var descriptionSpec = fullData.contentSpectifications.FirstOrDefault(r => r.SpectificationName.Equals("Description"));
+                    var description = "";
+                    if (descriptionSpec != null)
+                    {
+                        description = string.Join(",", descriptionSpec.SpectificationValue ?? new List<string>());
+                    }
+                    var style = "";
+                    var styleSpec = fullData.contentSpectifications.FirstOrDefault(r => r.SpectificationName.Equals("General"));
+                    if (styleSpec != null)
+                    {
+                        style = string.Join(",", styleSpec.SpectificationValue);
+                    }
+                    var runtime = "";
+                    var runtimeSpec = fullData.contentSpectifications.FirstOrDefault(r => r.SpectificationName.Equals("Runtime"));
+                    if (runtimeSpec != null)
+                    {
+                        runtime = string.Join(",", runtimeSpec.SpectificationValue);
+                        
+                    }
+                    
+
+                    <form id="contentForm" action="/Content/CreateTvShow">
+                        <input name="id" value="@Model" style="display: none;" >
+                        <div class="form-group">
+                            <label for="name">Name:</label>
+                            <input type="text" class="form-control" id="name" name="name" value="@name  >                                                             ">
+                        </div>
+                        <div class="form-group">
+                            <label for="description">Description:</label>
+                            <textarea class="form-control" id="description" name="description">@description</textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="style">General:</label>
+                            <input type="text" class="form-control" id="style" name="style" value="@style">
+                        </div>
+                        <div class="form-group">
+                            <label for="runtime">Runtime:</label>
+                            <input type="text" class="form-control" id="runtime" name="runtime" value="@runtime">
+                        </div>
+                        <div class="form-group">
+                            <label for="releseStart">Release time:</label>
+                            <input type="date" class="form-control" id="releaseTime" name="releaseTime"
+                               value="@(releaseDate != null ? DateTime.Parse(releaseDate.SpectificationValue.FirstOrDefault()) : "")">
+                        </div>
+                          <div class="form-group">
+                            <label for="service">Service:</label>
+                            <input type="text" class="form-control" id="servrce" name="service" value="">
+                        </div>
+                        <div class="form-group">
+                            <label for="avatar">Avatar URL:</label>
+                            <input type="text" class="form-control" id="avatar" name="avatar" value="@fullData.content.ImgURL">
+                        </div>
+                        <div class="form-group">
+                            <label for="fullvideo">Trailer URL:</label>
+                            <input type="text" class="form-control" id="fullvideo" name="fullvideo" value="@fullData.content.FullVid">
+                        </div>
 
 
-                    <button type="submit" class="btn btn-primary btn-block mt-3" onclick="saveMovie()">Save</button>
-                </form>
+
+                        <button type="submit" class="btn btn-primary btn-block mt-3" onclick="saveMovie()">Save</button>
+                    </form>
+                    
+                }
+                
             </div>
         </div>
     </div>

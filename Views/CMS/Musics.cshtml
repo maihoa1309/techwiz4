@@ -46,23 +46,25 @@
                 <div class="d-grid gap-2 d-md-block mb-3">
                     <button class="btn btn-success" id="addButton" type="button">Add New</button>
                 </div>
+
                 @await Component.InvokeAsync("showDataAdmin", new { item = contents, type = "music"})
             </div>
+
         </div>
     </div>
 
     <!-- Link tới các script cần thiết, bao gồm Bootstrap JS và jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script>
-        document.getElementById("addButton").addEventListener("click", function () {
+      <script>
+      document.getElementById("addButton").addEventListener("click", function () {
             window.location.href = "AddOrUpdateMusic";
         });
         document.getElementById("editButton").addEventListener("click", function () {
             window.location.href = "AddOrUpdateMusic";
         });
         //document.getElementById("deleteButton").addEventListener("click", function () {
-        //    window.location.href = "AddOrUpdateMusic";
+        //    window.location.href = "AddOrUpdateUser";
         //});
     </script>
 </body>

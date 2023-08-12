@@ -15,42 +15,73 @@ namespace StreamTrace.Repository
         Task<List<Content>> SortNameByASC();
 
         Task<List<Content>> SortNameByDESC();
-        Task<bool> CheckStatus(string name);
+        Task<bool> CheckStatus(int  id);
         Task<bool> InsertOrUpdateContent(FormInserOrUpdateContent req, string type, int id);
         Task<List<ContentDetailDTO>> GetContentByType(string type);
+        //public async Task<List<Content>> GetContent();
+      
 
         //Task<List<ContentDetailDTO>> GetContentByGeneral(string general, string value);
     }
     public class ContentRepository : BaseRepository<Content>, IContentRepository
     {
         public ContentRepository(ApplicationDbContext dbContext, UserManager<CustomUser> userManager, IHttpContextAccessor httpContext) : base(dbContext, userManager, httpContext) { }
+        //public async Task<List<Content>> GetContent()
+        //{
+        //    var query = from DbContext.contentDetail in _
+        //                where contentDetail.SpectificationId == 11
+        //                join content in _context. on contentDetail.ContentId equals content.Id
+        //                select new
+        //                {
+        //                    contentDetail.Id,
+        //                    contentDetail.ContentId,
+        //                    contentDetail.Value,
+        //                    content.Id,
+        //                    content.Name
+        //                };
 
+        //    var result = query.ToList();
+        //    return result;
+        //}
 
-        public async Task<bool> CheckStatus(string name)
+        public async Task<bool> CheckStatus(int id)
         {
             bool flag = false;
             var currentUser = _userManager.GetUserAsync(_contextAccessor.HttpContext.User).GetAwaiter().GetResult();
-            if (currentUser != null)
-            {
-                var userId = currentUser.Id;
-                var checkContentStatus = from c in _context.Content
-                                         where c.Name.ToLower().Contains(name.ToLower())
-                                         select c.Status;
-                if (checkContentStatus.FirstOrDefault() == 1)
-                {
-                    var checkUserSub = from u in _context.Users.AsQueryable()
-                                       join us in _context.UserSub.AsQueryable() on u.Id equals us.UserId
-                                       join sb in _context.Subsription.AsQueryable() on us.SubscriptionId equals sb.Id
-                                       where u.Id.Equals(userId) && us.DueDate >= DateTime.Now
-                                       select sb;
-                    if (checkUserSub != null)
-                    {
-                        flag = true;
-                    }
-                    flag = false;
-                }
-                flag = true;
-            }
+            //if (currentUser != null)
+            //{
+            //    var userId = currentUser.Id;
+            //    var checkContentStatus = from c in _context.Content
+            //                             where c.Name.ToLower().Contains(name.ToLower())
+            //                             select c.Status;
+
+            //    if (checkContentStatus.FirstOrDefault() == 1)
+            //    {
+            //        var checkUserSub = from u in _context.Users.AsQueryable()
+            //                           join us in _context.UserSub.AsQueryable() on u.Id equals us.UserId
+            //                           join sb in _context.Subsription.AsQueryable() on us.SubscriptionId equals sb.Id
+            //                           where u.Id.Equals(userId) && us.DueDate >= DateTime.Now
+            //                           select sb;
+            //        if (checkUserSub != null)
+            //        {
+            //            flag = true;
+            //        }
+            //        flag = false;
+            //    }
+            //    flag = true;
+            //}
+
+            //var statusContent = from c in _context.Content
+            //                    where c.Id == id
+            //                    select c.Status;
+            //if (statusContent.FirstOrDefault() == 0)
+            //{
+            //    flag = true;
+            //}
+            //else
+            //{
+            
+            //}
 
             return flag;
         }
@@ -115,9 +146,9 @@ namespace StreamTrace.Repository
                         }).ToListAsync();
             
             var result = (from c in contents
-                         join q in query on c.Id equals q.ContentId
-                         group q by c into grouped
-                         select new ContentDetailDTO
+                          join q in query on c.Id equals q.ContentId
+                          group q by c into grouped
+                          select new ContentDetailDTO
                          {
                              content = grouped.Key,
                              contentSpectifications = grouped.ToList()
@@ -128,12 +159,27 @@ namespace StreamTrace.Repository
         }
         public async Task<bool> InsertOrUpdateContent(FormInserOrUpdateContent req, string type, int id)
         {
+            
             var content = new Content();
             content.Name = req.name;
             content.Type = type;
             content.ImgURL = req.avatar;
             content.Trailer = req.trailer;
             content.FullVid = req.fullvideo;
+          
+            var  query = (from s in _context.Service
+                         where s.Name.ToLower().Equals(req.service.ToLower())
+                         select s).FirstOrDefault();
+            if (query == null) 
+            {
+                Service newS = new Service();
+                newS.Name = req.service;
+                _context.Service.FindAsync(newS);
+            }
+            else
+            {
+                content.ServiceId = query.Id;
+            }
             if (id> 0)
             {
                 _dbSet.Update(content);
@@ -314,24 +360,24 @@ namespace StreamTrace.Repository
             return await query.ToListAsync();
         }
 
-        //public async Task<List<ContentDetailDTO>> GetContentByGeneral(string general, string value)
-        //{
-        //    List<ContentDetailDTO> listRS = new List<ContentDetailDTO>();
-        //    //var contents = await _context.Content.Where(r => r.Type.Equals(type)).ToListAsync();
+        public async Task<List<ContentDetailDTO>> GetContentByGeneral(string general, string value)
+        {
+            //List<ContentDetailDTO> listRS = new List<ContentDetailDTO>();
+            ////var contents = await _context.Content.Where(r => r.Type.Equals(type)).ToListAsync();
 
-        //    var query = await (from cd in _context.ContentDetail
-        //                      join s in _context.Spectification on cd.SpectificationId equals s.Id
-        //                      where s.Name.Equals()
-        //                      group cd by new { cd.ContentId, cd.SpectificationId, s.Name } into grouped
-        //                      select new ContentSpectification
-        //                      {
-        //                          ContentId = grouped.Key.ContentId,
-        //                          SpectificationId = grouped.Key.SpectificationId,
-        //                          SpectificationName = grouped.Key.Name,
-        //                          SpectificationValue = grouped.Select(r => r.Value).ToList()
-        //                      }).ToListAsync();
+            //var query = await (from cd in _context.ContentDetail
+            //                  join s in _context.Spectification on cd.SpectificationId equals s.Id
+            //                  //where s.Name.Equals()
+            //                  group cd by new { cd.ContentId, cd.SpectificationId, s.Name } into grouped
+            //                  select new ContentSpectification
+            //                  {
+            //                      ContentId = grouped.Key.ContentId,
+            //                      SpectificationId = grouped.Key.SpectificationId,
+            //                      SpectificationName = grouped.Key.Name,
+            //                      SpectificationValue = grouped.Select(r => r.Value).ToList()
+            //                  }).ToListAsync();
 
-        //    throw new NotImplementedException();
-        //}
+            throw new NotImplementedException();
+        }
     }
 }

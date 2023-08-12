@@ -17,26 +17,30 @@ namespace StreamTrace.Controllers
                 _contentRepository = contentRepository;
         }
 
-        public  IActionResult CreateMovie(FormInserOrUpdateContent request, int id)
+        public  IActionResult CreateMovie(FormInserOrUpdateContent request)
         {
-             _contentRepository.InsertOrUpdateContent(request, "movie", id);
+            var id = request.id;
+            _contentRepository.InsertOrUpdateContent(request, "movie", id);
             return RedirectToAction("Movies", "CMS");
         }
-        public IActionResult CreateMusic(FormInserOrUpdateContent request, int id)
+        public IActionResult CreateMusic(FormInserOrUpdateContent request)
         {
+            var id = request.id;
             _contentRepository.InsertOrUpdateContent(request, "music", id);
             return RedirectToAction("Musics", "CMS");
         }
-        public IActionResult CreateTvShow(FormInserOrUpdateContent request,int id)
+        public IActionResult CreateTvShow(FormInserOrUpdateContent request)
         {
+            var id = request.id;
             _contentRepository.InsertOrUpdateContent(request, "tvshow", id);
             return RedirectToAction("TVShows", "CMS");
         }
 
-        public IActionResult UpdateMovie(FormInserOrUpdateContent request, int id)
+        public IActionResult UpdateMovie(FormInserOrUpdateContent request)
         {
+            var id = request.id;
             _contentRepository.InsertOrUpdateContent(request, "tvshow", id);
-            return RedirectToAction("TVShows", "CMS");
+            return RedirectToAction("Movies", "CMS");
         }
 
     }

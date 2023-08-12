@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using StreamTrace.Data;
 
 namespace StreamTrace.Controllers
@@ -59,13 +60,13 @@ namespace StreamTrace.Controllers
         {
             return View(id);
         }
-        public IActionResult AddOrUpdateTVShow()
+        public IActionResult AddOrUpdateTVShow(int id = 0)
         {
-            return View();
+            return View(id);
         }
-        public IActionResult AddOrUpdateMusic()
+        public IActionResult AddOrUpdateMusic(int id=0 )
         {
-            return View();
+            return View(id);
         }
         public IActionResult AddOrUpdateUser()
         {

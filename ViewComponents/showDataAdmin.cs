@@ -10,7 +10,7 @@ namespace StreamTrace.ViewComponents
         public IViewComponentResult Invoke(List<ContentDetailDTO> item, string type)
         {
             // Logic và dữ liệu của ViewComponent
-
+            ViewBag.Type = type;
             return View(item);
         }
     }
