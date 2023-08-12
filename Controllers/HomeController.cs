@@ -73,7 +73,7 @@ namespace StreamTrace.Controllers
         {
             return View(id);
         }
-        
+
         public IActionResult Pricing()
         {
             return View();
@@ -100,14 +100,14 @@ namespace StreamTrace.Controllers
 
        
         //contact/pricing
-           
+
             public IActionResult Privacy()
             {
                 return View();
             }
         //
         //user
-           
+
         //
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
