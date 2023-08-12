@@ -3,7 +3,7 @@
 @{
     ViewData["Title"] = "Musics";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
-    var contents = await contentRepository.GetAllAsync();
+    var contents = await contentRepository.GetContentByType("movie");
 }
 <head>
     <style>
@@ -49,11 +49,12 @@
                 <table class="table table-striped table-bordered">
                     <thead>
                         <tr>
-                            <th scope="col">Id</th>
                             <th scope="col">Name</th>
+
+                            <th scope="col">Details</th>
                             @*<th scope="col">Description</th>
                             <th scope="col">Director</th>
-                            <th scope="col">Singer</th>
+                            
                             <th scope="col">Runtime</th>
                             <th scope="col">ReleaseTime</th>
                             <th scope="col">Lenguage</th>
@@ -67,8 +68,16 @@
                         @foreach(var item in contents)
                         {
                             <tr>
-                                <th scope="row">@item.Id</th>
-                                <td>@item.Name</td>
+
+                                <td>@item.content.Name</td>
+                                <td>
+                                    <ul>
+                                        @foreach(var s in item.contentSpectifications)
+                                        {
+                                            <li>@s.SpectificationName: @string.Join(",", s.SpectificationValue)</li> 
+                                        }
+                                    </ul>
+                                </td>
                                 @*<td>@item.</td>
                                 <td>Director</td>
                                 <td>Singer</td>
