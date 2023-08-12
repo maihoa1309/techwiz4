@@ -49,18 +49,18 @@ NOTE: This is main stylesheet of template, This file contains the styling for th
 /*=============================================
 Fonts
 ==============================================*/
-@import url('https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700;800&amp;family=Roboto:wght@300;400;500;700&amp;display=swap');
+@import url(https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700;800&amp;family=Roboto:wght@300;400;500;700&amp;display=swap);
 
 /*==============================================
 Import css
 ===============================================*/
 
-@import url('all.min.css');
-@import url('fontawesome.min.css');
-@import url('ionicons.min.css');
-@import url('slick.min.css');
-@import url('owl.carousel.min.css');
-@import url('magnific-popup.min.css');
+@import url(all.min.css);
+@import url(fontawesome.min.css);
+@import url(ionicons.min.css);
+@import url(slick.min.css);
+@import url(owl.carousel.min.css);
+@import url(magnific-popup.min.css);
 
 /*================================================
 Moz Selection
@@ -361,7 +361,7 @@ select.form-control {
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
-    background-image: url('data:image/svg+xml;utf8,<svg fill=\'%23999999\' height=\'24\' viewBox=\'0 0 24 24\' width=\'24\' xmlns=\'http://www.w3.org/2000/svg\'><path d=\'M7 10l5 5 5-5z\'/><path d=\'M0 0h24v24H0z\' fill=\'none\'/></svg>');
+    background-image: url(data:image/svg+xml;utf8,<svg fill=\'%23999999\' height=\'24\' viewBox=\'0 0 24 24\' width=\'24\' xmlns=\'http://www.w3.org/2000/svg\'><path d=\'M7 10l5 5 5-5z\'/><path d=\'M0 0h24v24H0z\' fill=\'none\'/></svg>);
     background-repeat: no-repeat;
     background-position: right 16px bottom 50%;
     background-size: 20px 20px;
@@ -937,21 +937,7 @@ Login, Register
     text-align: center;
 }
 
-#pms_login {
-    padding: 30px;
-    background: var(--dark-color);
-    position: relative;
-    z-index: 9;
-    width: 500px;
-    display: inline-block;
-    text-align: left;
-}
-
-    #pms_login strong {
-        font-weight: 400;
-    }
-
-    #pms_login h4,
+    #account h4,
     #pms_register-form h4,
     #pms_recover_password_form h4 {
         border-bottom: 1px solid var(--black-color);
@@ -961,7 +947,7 @@ Login, Register
         text-transform: uppercase;
     }
 
-        #pms_login h4:before,
+        #account h4:before,
         #pms_register-form h4:before,
         #pms_recover_password_form h4:before {
             content: "";
@@ -974,17 +960,17 @@ Login, Register
             background: var(--primary-color);
         }
 
-    #pms_login p {
+    #account p {
         display: inline-block;
         width: 100%;
         margin-bottom: 15px;
     }
 
-        #pms_login p.login-submit {
+        #account p.login-submit {
             margin-bottom: 0;
         }
 
-        #pms_login p label {
+        #account p label {
             margin: 0;
             font-family: var(--title-fonts);
             color: var(--white-color);
@@ -1164,7 +1150,7 @@ form#pms_edit-profile-form.pms-form ul.pms-form-fields-wrapper li {
         height: inherit;
     }
 
-    #pms_login,
+    #account,
     #pms_register-form,
     #pms_recover_password_form,
     #pms_new_subscription-form {
@@ -1176,7 +1162,7 @@ form#pms_edit-profile-form.pms-form ul.pms-form-fields-wrapper li {
         width: 100%;
     }
 
-    #pms_login h4,
+    #account h4,
     #pms_register-form h4,
     #pms_recover_password_form h4 {
         font-size: 20px;
@@ -3794,7 +3780,6 @@ Gen Slick
 
 .home-singal-silder .gen-banner-movies .slider-item {
     height: 70vh;
-    
 }
 
 .gen-banner-movies .slider-item {
