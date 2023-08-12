@@ -15,7 +15,7 @@ namespace StreamTrace.Repository
         Task<List<Content>> SortNameByASC();
 
         Task<List<Content>> SortNameByDESC();
-        Task<bool> CheckStatus(string name);
+        Task<bool> CheckStatus(int  id);
         Task<bool> InsertOrUpdateContent(FormInserOrUpdateContent req, string type, int id);
         Task<List<ContentDetailDTO>> GetContentByType(string type);
         //public async Task<List<Content>> GetContent();
@@ -44,31 +44,44 @@ namespace StreamTrace.Repository
         //    return result;
         //}
 
-        public async Task<bool> CheckStatus(string name)
+        public async Task<bool> CheckStatus(int id)
         {
             bool flag = false;
             var currentUser = _userManager.GetUserAsync(_contextAccessor.HttpContext.User).GetAwaiter().GetResult();
-            if (currentUser != null)
-            {
-                var userId = currentUser.Id;
-                var checkContentStatus = from c in _context.Content
-                                         where c.Name.ToLower().Contains(name.ToLower())
-                                         select c.Status;
-                if (checkContentStatus.FirstOrDefault() == 1)
-                {
-                    var checkUserSub = from u in _context.Users.AsQueryable()
-                                       join us in _context.UserSub.AsQueryable() on u.Id equals us.UserId
-                                       join sb in _context.Subsription.AsQueryable() on us.SubscriptionId equals sb.Id
-                                       where u.Id.Equals(userId) && us.DueDate >= DateTime.Now
-                                       select sb;
-                    if (checkUserSub != null)
-                    {
-                        flag = true;
-                    }
-                    flag = false;
-                }
-                flag = true;
-            }
+            //if (currentUser != null)
+            //{
+            //    var userId = currentUser.Id;
+            //    var checkContentStatus = from c in _context.Content
+            //                             where c.Name.ToLower().Contains(name.ToLower())
+            //                             select c.Status;
+
+            //    if (checkContentStatus.FirstOrDefault() == 1)
+            //    {
+            //        var checkUserSub = from u in _context.Users.AsQueryable()
+            //                           join us in _context.UserSub.AsQueryable() on u.Id equals us.UserId
+            //                           join sb in _context.Subsription.AsQueryable() on us.SubscriptionId equals sb.Id
+            //                           where u.Id.Equals(userId) && us.DueDate >= DateTime.Now
+            //                           select sb;
+            //        if (checkUserSub != null)
+            //        {
+            //            flag = true;
+            //        }
+            //        flag = false;
+            //    }
+            //    flag = true;
+            //}
+
+            //var statusContent = from c in _context.Content
+            //                    where c.Id == id
+            //                    select c.Status;
+            //if (statusContent.FirstOrDefault() == 0)
+            //{
+            //    flag = true;
+            //}
+            //else
+            //{
+            
+            //}
 
             return flag;
         }
@@ -153,6 +166,20 @@ namespace StreamTrace.Repository
             content.ImgURL = req.avatar;
             content.Trailer = req.trailer;
             content.FullVid = req.fullvideo;
+          
+            var  query = (from s in _context.Service
+                         where s.Name.ToLower().Equals(req.service.ToLower())
+                         select s).FirstOrDefault();
+            if (query == null) 
+            {
+                Service newS = new Service();
+                newS.Name = req.service;
+                _context.Service.FindAsync(newS);
+            }
+            else
+            {
+                content.ServiceId = query.Id;
+            }
             if (id> 0)
             {
                 _dbSet.Update(content);
