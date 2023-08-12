@@ -26,7 +26,7 @@ namespace StreamTrace.Controllers
                 return View();
             }
            
-            public IActionResult Genre()
+            public IActionResult MoviesGenre()
             {
                 return View();
             }
@@ -46,10 +46,14 @@ namespace StreamTrace.Controllers
             {
                 return View(id);
             }
+            public IActionResult TvshowsGenre()
+            {
+                return View();
+            }
         //
 
         //Music
-            public IActionResult MusicHome()
+        public IActionResult MusicHome()
             {
                 return View();
             }
@@ -65,10 +69,14 @@ namespace StreamTrace.Controllers
             {
                 return View(id);
             }
+            public IActionResult MusicsGenre()
+            {
+                return View();
+            }
         //
 
-   
-    
+
+
         public IActionResult MovieDetail(int id)
         {
             return View(id);
