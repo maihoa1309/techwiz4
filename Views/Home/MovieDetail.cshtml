@@ -1,4 +1,4 @@
-﻿@model int 
+﻿@model int
 @using StreamTrace.Repository;
 @inject IContentRepository contentRepository;
 
@@ -7,7 +7,16 @@
     Layout = "~/Views/Shared/_LayoutWEB.cshtml";
     var contentDetail = await contentRepository.GetFullDetail(Model);
 }
-@if(contentDetail != null) {
+
+@if (contentDetail != null)
+{
+    @section styles {
+    <style>
+        .plyr__poster {
+            background-image: url(@contentDetail.content.ImgURL) !important
+        }
+    </style>
+    }
     <!-- Single movie Start -->
     <section class="gen-section-padding-3 gen-single-movie">
         <div class="container">
@@ -16,11 +25,17 @@
                     <div class="gen-single-movie-wrapper style-1">
                         <div class="row">
                             <div class="col-lg-12">
-                                <div class="gen-video-holder">
-                                    <iframe width="100%" height="550px" src="https://www.youtube.com/embed/LXb3EKWsInQ"
-                                        frameborder="0"
-                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                        allowfullscreen></iframe>
+                                <div class="gen-video-holder" style="background: @contentDetail.content.ImgURL no-repeat center center">
+                                    <div class="plyr__video-embed" id="player" style="background: @contentDetail.content.ImgURL no-repeat center center">
+                                        <iframe src="https://www.youtube.com/embed/LXb3EKWsInQ;iv_load_policy=3&amp;modestbranding=1&amp;playsinline=1&amp;showinfo=0&amp;rel=0&amp;enablejsapi=1"
+                                            allowfullscreen
+                                            allowtransparency
+                                            allow="autoplay"></iframe>
+                                    </div>
+                                    @*<iframe width="100%" height="550px" src="https://www.youtube.com/embed/LXb3EKWsInQ"
+                                frameborder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowfullscreen></iframe>*@
                                 </div>
                                 <div class="gen-single-movie-info">
 
@@ -39,21 +54,21 @@
 
                                     @*Noi Dung*@
                                     <p>
-                                       @contentDetail.content.Manufacture
+                                        @contentDetail.content.Manufacture
                                     </p>
 
                                     <div class="gen-after-excerpt">
                                         <div class="gen-extra-data">
                                             <ul>
-                                                @foreach(var spec in contentDetail.contentSpectifications)
+                                                @foreach (var spec in contentDetail.contentSpectifications)
                                                 {
                                                     <li>
                                                         <span>@spec.SpectificationName : </span>
-                                                        @foreach(var v in spec.SpectificationValue)
+                                                        @foreach (var v in spec.SpectificationValue)
                                                         {
                                                             <span>
                                                                 <a href="javascipt:void(0)">
-                                                                    @v, 
+                                                                    @v,
                                                                 </a>
                                                             </span>
                                                         }
@@ -877,12 +892,42 @@
         </div>
     </section>
     <!-- Single movie End -->
+    @section scripts{
+    <script>
 
+        var player = new Plyr("#player")
+
+
+        let isUserPlay = true; // Biến cờ để kiểm tra xem người dùng có nhấn play hay không
+
+        player.on('play', function () {
+            if (isUserPlay) {
+                player.pause();
+                // Thực hiện các hành động khi video được phát
+                //Goi vao controller check quyen
+                var url = "/UserSub/CheckUserSubsciption/" + @Model;
+                $.get(url).done(function (response) {
+                    // Đặt biến cờ isUserPlay thành false để biết rằng việc play video lần này không phải do người dùng nhấn play
+                    isUserPlay = false;
+                    $('#player').css('bacakground', 'none')
+                    player.play();
+
+                })
+                    .fail(function (jqXHR, textStatus, errorThrown) {
+                        // Xử lý khi có lỗi xảy ra
+                        alert("Hay dang ky subscible de xem phim");
+                        window.location.href = "/" //THay trang subscible vao day
+                    });
+            }
+
+        });
+
+    </script>
+    }
 }
-   
 
-    
 
-    
 
-  
+
+
+

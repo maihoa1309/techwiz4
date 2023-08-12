@@ -11,107 +11,25 @@ namespace StreamTrace.Controllers
 
         private readonly IBaseRepository<UserSub> _repository;
         private readonly IUserSubRepository _usersubRepository;
+        private readonly IContentRepository _contentRepository;
 
-        public UserSubController(IBaseRepository<UserSub> repository, IUserSubRepository usersubRepository) : base(repository)
+        public UserSubController(IBaseRepository<UserSub> repository, IUserSubRepository usersubRepository, IContentRepository contentRepository) : base(repository)
         {
             _usersubRepository = usersubRepository;
+            _contentRepository = contentRepository;
 
         }
-
-        // GET: /UserSub
-        public async Task<IActionResult> Index()
+        [HttpGet]
+        public async Task<IActionResult> CheckUserSubsciptionAsync(int contentId)
         {
-            var userSubs = await _usersubRepository.GetAllAsync();
-            return View(userSubs);
-        }
-
-        // GET: /UserSub/Create
-        public async Task<IActionResult> Create()
-        {
-            return View();
-        }
-
-        // POST: /UserSub/Create
-        [HttpPost]
-        public async Task<IActionResult> Create(UserSub userSub)
-        {
-            var result = await _usersubRepository.CreateAsync(userSub);
-            if (result != null)
+            var result = await _contentRepository.CheckUserSubscibleAsync(contentId);
+            if (result)
             {
-                return Ok(result);
+                return Ok("Ban co the xem phim nay");
             }
             else
             {
-                return BadRequest("Error!");
-            }
-        }
-
-        // GET: /UserSub/Edit/{id}
-        public async Task<IActionResult> Edit(int id)
-        {
-            var userSub = await _usersubRepository.GetByIdAsync(id);
-            if (userSub == null)
-            {
-                return NotFound();
-            }
-            return View(userSub);
-        }
-
-        // POST: /UserSub/Edit/{id}
-        [HttpPost]
-        public async Task<IActionResult> Edit(int id, UserSub userSub)
-        {
-            if (id != userSub.Id)
-            {
-                return BadRequest();
-            }
-
-            if (ModelState.IsValid)
-            {
-                var result = await _usersubRepository.UpdateAsync(userSub);
-                if (result != null)
-                {
-                    return RedirectToAction("Index");
-                }
-                else
-                {
-                    return BadRequest("Error!");
-                }
-            }
-            return View(userSub);
-        }
-
-        // GET: /UserSub/Delete/{id}
-        public async Task<IActionResult> DeleteAsync(int id)
-        {
-            var userSub = await _usersubRepository.GetByIdAsync(id);
-            if (userSub == null)
-            {
-                return NotFound();
-            }
-            return View(userSub);
-        }
-
-        // POST: /UserSub/Delete/{id}
-        [HttpPost, ActionName("Delete")]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            var userSub = await _usersubRepository.GetByIdAsync(id);
-            if (userSub == null)
-            {
-                return NotFound();
-            }
-            else
-            {
-                var result = await _usersubRepository.DeleteAsync(userSub);
-                if (result != null)
-                {
-                    return RedirectToAction("Index");
-                }
-                else
-                {
-                    return BadRequest("Error!");
-                }
+                return BadRequest("Ban can Dang ky de xem duoc noi dung");
             }
         }
     }

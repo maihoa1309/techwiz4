@@ -5,7 +5,6 @@
         free = 0,
         three_months = 1,
         six_months = 2,
-        nine_months =3,
-        a_year = 4
+        nine_months =3
     }
 }
