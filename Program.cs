@@ -18,7 +18,7 @@ namespace StreamTrace
                 options.UseSqlServer(connectionString));
             //builder.Services.AddTransient<IEmailSender, SendGrid>
             builder.Services.AddDatabaseDeveloperPageExceptionFilter();
-            builder.Services.AddIdentity<CustomUser, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = true)
+            builder.Services.AddIdentity<CustomUser, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = false)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             builder.Services.AddScoped(typeof(IBaseRepository<>), typeof(BaseRepository<>));
             builder.Services.AddScoped<IContentRepository, ContentRepository>();
