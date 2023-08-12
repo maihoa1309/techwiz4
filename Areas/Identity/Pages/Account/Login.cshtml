@@ -28,6 +28,7 @@
     <link rel="stylesheet" href="/css/responsive.css" />
     <style>
         #account {
+            margin-top: -140px;
             padding: 30px;
             background: var(--dark-color);
             position: relative;
@@ -132,30 +133,29 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-6 col-md-offset-2">
-                <section>
-                    @{
-                        if ((Model.ExternalLogins?.Count ?? 0) == 0)
-                        {
-                        }
-                        else
-                        {
-                            <form id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal">
-                                <div>
-                                    <p>
-                                        @foreach (var provider in Model.ExternalLogins!)
-                                        {
-                                            <button type="submit" class="btn btn-primary" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">@provider.DisplayName</button>
-                                        }
-                                    </p>
-                                </div>
-                            </form>
-                        }
-                    }
-                </section>
-            </div>
         </div>
     </section>
+        <section>
+            @{
+                if ((Model.ExternalLogins?.Count ?? 0) == 0)
+                {
+                }
+                else
+                {
+                    <form id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal">
+                        <div>
+                            <p>
+                                @foreach (var provider in Model.ExternalLogins!)
+                                {
+                                    <button type="submit" class="btn btn-primary" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">@provider.DisplayName</button>
+                                }
+                            </p>
+                        </div>
+                    </form>
+                }
+            }
+        </section>
+  
     @section Scripts {
         <partial name="_ValidationScriptsPartial" />
     }
