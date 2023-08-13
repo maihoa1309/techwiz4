@@ -333,24 +333,6 @@ namespace StreamTrace.Repository
             return await query.ToListAsync();
         }
 
-        public async Task<List<ContentDetailDTO>> GetContentByGeneral(string general, string value)
-        {
-            //List<ContentDetailDTO> listRS = new List<ContentDetailDTO>();
-            ////var contents = await _context.Content.Where(r => r.Type.Equals(type)).ToListAsync();
-
-            //var query = await (from cd in _context.ContentDetail
-            //                  join s in _context.Spectification on cd.SpectificationId equals s.Id
-            //                  //where s.Name.Equals()
-            //                  group cd by new { cd.ContentId, cd.SpectificationId, s.Name } into grouped
-            //                  select new ContentSpectification
-            //                  {
-            //                      ContentId = grouped.Key.ContentId,
-            //                      SpectificationId = grouped.Key.SpectificationId,
-            //                      SpectificationName = grouped.Key.Name,
-            //                      SpectificationValue = grouped.Select(r => r.Value).ToList()
-            //                  }).ToListAsync();
-
-            throw new NotImplementedException();
-        }
+        
     }
 }
