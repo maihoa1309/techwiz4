@@ -368,6 +368,7 @@ namespace StreamTrace.Repository
             return await query.ToListAsync();
         }
 
+
         public async Task<List<Content>> GetContentByGeneral( string value)
         {
             List<Content> listRS = new List<Content>();
@@ -379,5 +380,6 @@ namespace StreamTrace.Repository
 
             return listRS;
         }
+
     }
 }

@@ -15,5 +15,7 @@ namespace StreamTrace.DTO
         public int? SpectificationId { get; set; }
         public string? SpectificationName { get; set; }
         public List<string>? SpectificationValue { get; set; }
+
+        
     }
 }

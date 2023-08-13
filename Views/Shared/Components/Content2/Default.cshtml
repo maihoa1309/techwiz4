@@ -47,29 +47,31 @@
                                             <li>
                                                 <img src="~/images/asset-2.png" alt="rating-image">
                                                 <span>
-                                                    0
+                                                 
                                                 </span>
                                             </li>
                                         </ul>
-                                        <p>
-                                            Streamlab is a long established fact that a reader will be distracted
-                                            by the readable content of a page The point of using Lorem Streamlab.
-                                        </p>
+                                        
                                         <div class="gen-meta-info">
                                             <ul class="gen-meta-after-excerpt">
                                                 @foreach (var spec in Model.contentSpectifications)
                                                 {
-                                                    <li>
-                                                        <span>@spec.SpectificationName : </span>
-                                                        @foreach (var v in spec.SpectificationValue)
-                                                        {
-                                                            <span>
-                                                                <a href="javascipt:void(0)">
-                                                                    @v,
-                                                                </a>
-                                                            </span>
-                                                        }
-                                                    </li>
+                                                    
+                                                    
+                                                        <li>
+                                                            <span>@spec.SpectificationName : </span>
+                                                            @foreach (var v in spec.SpectificationValue)
+                                                            {
+
+                                                                <span>
+                                                                    <a href="javascipt:void(0)">
+                                                                        @v,
+                                                                    </a>
+                                                                </span>
+
+                                                            }
+                                                        </li>
+                                                    
                                                 }
                                                
                                             </ul>

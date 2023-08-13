@@ -11,7 +11,7 @@
     var allMusic = await contentRepository.FilterAsync(null, r => r.Type.Equals("music"), "Id", false, 1, 100);
     var topTvshow = await contentRepository.GetContentHighestViewCount("tvshows");
     var topMovie = await contentRepository.GetContentHighestViewCount("movie");
-    var getDetailMusics = await contentRepository.GetContentByType("movie");
+    var getDetailMusics = await contentRepository.GetContentByType("music");
 }
 
 
@@ -20,7 +20,7 @@
     <section class="pt-0 pb-0">
         <div class="container-fluid px-0">
             <div class="row no-gutters">
-            @for(int i = 0; i < 1; i++)
+            @for(int i = 1; i < 2; i++)
             {
                 @await Component.InvokeAsync("Content2", new { item = getDetailMusics[i] })
             }

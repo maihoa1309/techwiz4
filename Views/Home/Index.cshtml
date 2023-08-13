@@ -95,9 +95,6 @@
                             @await Component.InvokeAsync("ContentItem", new { item = movie })
 
                         }
-
-
-
                     </div>
                 </div>
             </div>
@@ -106,18 +103,15 @@
 </section>
 <!-- owl-carousel Videos Section-2 End -->
 <!-- Slick Slider start -->
-<section class="gen-section-padding-2 pt-0 pb-0">
-    <div class="container">
-        <div class="home-singal-silder">
-            <div class="gen-nav-movies gen-banner-movies">
-                <div class="row">
-                    <div class="row no-gutters">
-                        @await Component.InvokeAsync("Content2", new { item = content2 })
-                    </div>
-                </div>
-            </div>
+<section class="pt-0 pb-0">
+    <div class="container-fluid px-0">
+
+        <div class="row no-gutters">
+            @await Component.InvokeAsync("Content2", new { item = content2 })
         </div>
     </div>
+
+
 </section>
 <!-- Slick Slider End -->
 <!-- owl-carousel Videos Section-3 Start -->
@@ -158,14 +152,15 @@
 </section>
 <!-- owl-carousel Videos Section-3 End -->
 <!-- owl-carousel images Start -->
-<section class="pt-0 gen-section-padding-2 home-singal-silder">
-    <div class="container">
-        <div class="row">
-            <div class="row no-gutters">
-                @await Component.InvokeAsync("Content2", new { item = content3 })
-            </div>
+<section class="pt-0 pb-0">
+    <div class="container-fluid px-0">
+
+        <div class="row no-gutters">
+            @await Component.InvokeAsync("Content2", new { item = content3 })
         </div>
     </div>
+
+
 </section>
 <!-- owl-carousel images End -->
 <!-- owl-carousel Videos Section-4 Start -->
