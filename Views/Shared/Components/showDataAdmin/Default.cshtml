@@ -53,19 +53,22 @@
                         <div class="d-grid gap-3 d-md-block">
                             @{
                                 var urlUpdate = Url.Action("AddOrUpdateTVShow", "CMS");
+                                var urlDelete = Url.Action("AddOrUpdateTVShow", "CMS");
                                 var type = ViewBag.Type as string;
                                 if (type.Equals("tvshow"))
                                 {
                                     urlUpdate = Url.Action("AddOrUpdateTVShow", "CMS",new {id = item.content.Id});
-                                  
+                                    urlDelete = Url.Action("AddOrUpdateTVShow", "CMS", new { id = item.content.Id });
                                 }
                                 if (type.Equals("movie"))
                                 {
                                     urlUpdate = Url.Action("AddOrUpdateMovie", "CMS", new { id = item.content.Id });
+                                    urlDelete = Url.Action("AddOrUpdateMovie", "CMS", new { id = item.content.Id });
                                 }
                                 if (type.Equals("music"))
                                 {
                                     urlUpdate = Url.Action("AddOrUpdateMusic", "CMS", new { id = item.content.Id });
+                                    urlDelete = Url.Action("AddOrUpdateMusic", "CMS", new { id = item.content.Id });
                                 }
                                 
                             }
