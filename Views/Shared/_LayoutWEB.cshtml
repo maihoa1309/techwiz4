@@ -16,6 +16,21 @@
     <link rel="stylesheet" href="~/css/style.css" />
     <!--  Responsive -->
     <link rel="stylesheet" href="~/css/responsive.css" />
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/plyr/3.7.8/plyr.css" integrity="sha512-yexU9hwne3MaLL2PG+YJDhaySS9NWcj6z7MvUDSoMhwNghPgXgcvYgVhfj4FMYpPh1Of7bt8/RK5A0rQ9fPMOw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        .menu-item-has-children {
+            position: relative;
+        }
+
+        .sub-menu {
+            position: absolute;
+            right: 0;
+        }
+    </style>
+    @RenderSection("styles",  false)
+
 </head>
 <body>
     <!--=========== Loader =============-->
@@ -360,5 +375,7 @@
     <script src="@Url.Content("~/js/streamlab-core.js")"></script>
 
     <script src="@Url.Content("~/js/script.js")"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/plyr/3.7.8/plyr.min.js" integrity="sha512-vONptKEoKbP1gaC5UkbYDa9OPr04ur4bxaaqT7DAJxGHB2oogtseCPrl5e5hPFokGYotlGNV4d+GM593ka7iNA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    @RenderSection("scripts", false)
 </body>
 </html>

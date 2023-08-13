@@ -42,6 +42,26 @@ namespace StreamTrace.Controllers
             _contentRepository.InsertOrUpdateContent(request, "tvshow", id);
             return RedirectToAction("Movies", "CMS");
         }
+        public IActionResult GetMovieFromGenre( string value)
+        {
+            _contentRepository.GetContentByGeneral(value);
+            return RedirectToAction("MoviesGenre", "Home");
+        }
+        public IActionResult DeleteMovie(Content content)
+        {
+            _contentRepository.DeleteAsync(content);
+            return RedirectToAction("Movies", "CMS");
+        }
+        public IActionResult DeleteMusic(Content content)
+        {
+            _contentRepository.DeleteAsync(content);
+            return RedirectToAction("Musics", "CMS");
+        }
+        public IActionResult DeleteTVShow(Content content)
+        {
+            _contentRepository.DeleteAsync(content);
+            return RedirectToAction("TVShows", "CMS");
+        }
 
     }
 }

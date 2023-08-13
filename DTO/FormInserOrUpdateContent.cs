@@ -15,6 +15,7 @@
         public string? style { get; set; }                     
         public string? singer { get; set; }
         public string? languge { get; set; }
+        public string? service { get; set; }
      
         
        
